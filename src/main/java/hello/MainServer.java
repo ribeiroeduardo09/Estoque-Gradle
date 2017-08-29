@@ -4,6 +4,7 @@ import static spark.Spark.*;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.LinkedList;
 
 
 public class MainServer {
@@ -56,12 +57,12 @@ public class MainServer {
     	sistema.addCliente(new Cliente(02, "eduardo", "222-22", "Rua Baixa", "2222-2222", LocalDate.of(2017, Month.AUGUST, 18)));
     }
     public static void inicializarFornecedores(){
-    	sistema.addFornecedor(new Fornecedor(01, "ruben", "111-11", "Rua Alta", "1111-1111", LocalDate.of(2017, Month.AUGUST, 18)));
+    	sistema.addFornecedor(new Fornecedor("Google", 01, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>()));
     }
     public static void inicializarCompras(){
-    	
+    	sistema.addCompra(new Compra(23.00f, LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(), new LinkedList<Fornecedor>(), 01));
     }
     public static void inicializarVendas(){
-    	
+    	sistema.addVenda(new Venda(34.00f, "Débito", LocalDate.of(2017, Month.AUGUST, 18), 01, new LinkedList<Produto>()));
     }
 }
