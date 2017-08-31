@@ -57,12 +57,12 @@ public class MainServer {
     	sistema.addCliente(new Cliente(02, "eduardo", "222-22", "Rua Baixa", "2222-2222", LocalDate.of(2017, Month.AUGUST, 18)));
     }
     public static void inicializarFornecedores(){
-    	sistema.addFornecedor(new Fornecedor("Google", 01, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>()));
+    	sistema.addFornecedor(new Fornecedor("Apple", 01, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(sistema.getProdutos())));
     }
-    public static void inicializarCompras(){
-    	sistema.addCompra(new Compra(23.00f, LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(), new LinkedList<Fornecedor>(), 01));
+    public static void inicializarCompras(){    	 	
+    	sistema.addCompra(new Compra(23.00f, LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(sistema.getProdutos()), new LinkedList<Fornecedor>(sistema.getFornecedores()), 01));
     }
     public static void inicializarVendas(){
-    	sistema.addVenda(new Venda(34.00f, "Débito", LocalDate.of(2017, Month.AUGUST, 18), 01, new LinkedList<Produto>()));
+    	sistema.addVenda(new Venda(34.00f, "Débito", LocalDate.of(2017, Month.AUGUST, 18), 01, new LinkedList<Produto>(sistema.getProdutos())));
     }
 }
