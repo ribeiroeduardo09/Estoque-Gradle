@@ -9,8 +9,10 @@ public class Sistema {
 	private List<Cliente> clientes = new LinkedList<Cliente>();
 	private List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
 	private List<Usuario> usuarios = new LinkedList<Usuario>();
+	private List<Administrador> admin = new LinkedList<Administrador>();
 	private List<Venda> vendas = new LinkedList<Venda>();
 	private List<Compra> compras = new LinkedList<Compra>();
+	private List<Historico> historicos = new LinkedList<Historico>();
 	
 	/*---------Produtos----------*/
 	public void addProduto(Produto prod){
@@ -26,7 +28,8 @@ public class Sistema {
 			if(prod.getCodigoproduto() == codigoproduto) return prod;
 		} 
 		return null;
-	}/*---------Usuários----------*/
+	}
+	/*---------Usuários----------*/
 	public void addUsuario(Usuario usuario){
 		usuarios.add(usuario);
 	}
@@ -38,6 +41,21 @@ public class Sistema {
 	public Usuario searchUsuario(String login){
 		for(Usuario usr:usuarios){
 			if(usr.getLogin().equals(login)) return usr;
+		}
+		return null;
+	}
+	/*---------Administrador----------*/
+	public void addAdministrador(Administrador adm){
+		admin.add(adm);
+	}
+	public void delAdministrador(String login){
+		for(Administrador ad:admin){
+			if(ad.getLogin()==login) admin.remove(ad);
+		}
+	}
+	public Administrador searchAdministrador(String login){
+		for(Administrador ad:admin){
+			if(ad.getLogin().equals(login)) return ad;
 		}
 		return null;
 	}
@@ -101,7 +119,35 @@ public class Sistema {
 		}
 		return null;
 	}
+	/*---------Históricos----------*/
+	public void addHistorico(Historico historico){
+		historicos.add(historico);
+	}
+	public void delHistorico(int codigocompra){
+		for(Historico hist:historicos){
+			if(hist.getCodigocompra()==codigocompra) historicos.remove(hist);
+		}
+	}
+	public Historico searchHistorico(int codigocompra){
+		for(Historico hist:historicos){
+			if(hist.getCodigocompra()==codigocompra) return hist;
+		}
+		return null;
+	}
 	
+	/*---------Getters e setters----------*/
+	public List<Administrador> getAdmin() {
+		return admin;
+	}
+	public void setAdmin(List<Administrador> admin) {
+		this.admin = admin;
+	}
+	public List<Historico> getHistoricos() {
+		return historicos;
+	}
+	public void setHistoricos(List<Historico> historicos) {
+		this.historicos = historicos;
+	}
 	//Getters & Setters
 	public List<Produto> getProdutos() {
 		return produtos;
