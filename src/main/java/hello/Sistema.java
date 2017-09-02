@@ -9,7 +9,6 @@ public class Sistema {
 	private List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
 	private List<Usuario> usuarios = new LinkedList<Usuario>();
 	private List<Compra> compras = new LinkedList<Compra>();
-	private List<Historico> historicos = new LinkedList<Historico>();
 	
 	/*---------Produtos----------*/
 	public void addProduto(Produto prod){
@@ -71,30 +70,8 @@ public class Sistema {
 		}
 		return null;
 	}
-	/*---------Históricos----------*/
-	public void addHistorico(Historico historico){
-		historicos.add(historico);
-	}
-	public void delHistorico(int codigocompra){
-		for(Historico hist:historicos){
-			if(hist.getCodigocompra()==codigocompra) historicos.remove(hist);
-		}
-	}
-	public Historico searchHistorico(int codigocompra){
-		for(Historico hist:historicos){
-			if(hist.getCodigocompra()==codigocompra) return hist;
-		}
-		return null;
-	}
 	
 	/*---------Getters e setters----------*/
-	public List<Historico> getHistoricos() {
-		return historicos;
-	}
-	public void setHistoricos(List<Historico> historicos) {
-		this.historicos = historicos;
-	}
-	//Getters & Setters
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
