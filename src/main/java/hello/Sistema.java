@@ -6,11 +6,8 @@ import java.util.List;
 public class Sistema {
 	
 	private List<Produto> produtos = new LinkedList<Produto>();
-	private List<Cliente> clientes = new LinkedList<Cliente>();
 	private List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
 	private List<Usuario> usuarios = new LinkedList<Usuario>();
-	private List<Administrador> admin = new LinkedList<Administrador>();
-	private List<Venda> vendas = new LinkedList<Venda>();
 	private List<Compra> compras = new LinkedList<Compra>();
 	private List<Historico> historicos = new LinkedList<Historico>();
 	
@@ -44,36 +41,6 @@ public class Sistema {
 		}
 		return null;
 	}
-	/*---------Administrador----------*/
-	public void addAdministrador(Administrador adm){
-		admin.add(adm);
-	}
-	public void delAdministrador(String login){
-		for(Administrador ad:admin){
-			if(ad.getLogin()==login) admin.remove(ad);
-		}
-	}
-	public Administrador searchAdministrador(String login){
-		for(Administrador ad:admin){
-			if(ad.getLogin().equals(login)) return ad;
-		}
-		return null;
-	}
-	/*---------Clientes----------*/
-	public void addCliente(Cliente cliente){
-		clientes.add(cliente);
-	}
-	public void delCliente(int codigocliente){
-		for(Cliente cli:clientes){
-			if(cli.getCodigocliente()==codigocliente) clientes.remove(cli);
-		}
-	}
-	public Cliente searchCliente(int codigocliente){
-		for(Cliente cli:clientes){
-			if(cli.getCodigocliente()==codigocliente) return cli;
-		}
-		return null;
-	}
 	/*---------Fornecedores----------*/
 	public void addFornecedor(Fornecedor fornecedor){
 		fornecedores.add(fornecedor);
@@ -104,21 +71,6 @@ public class Sistema {
 		}
 		return null;
 	}
-	/*---------Venda----------*/
-	public void addVenda(Venda venda){
-		vendas.add(venda);
-	}
-	public void delVenda(int codigo){
-		for(Venda ven:vendas){
-			if(ven.getCodigo()==codigo) vendas.remove(ven);
-		}
-	}
-	public Venda searchVenda(int codigo){
-		for(Venda ven:vendas){
-			if(ven.getCodigo()==codigo) return ven;
-		}
-		return null;
-	}
 	/*---------Históricos----------*/
 	public void addHistorico(Historico historico){
 		historicos.add(historico);
@@ -136,12 +88,6 @@ public class Sistema {
 	}
 	
 	/*---------Getters e setters----------*/
-	public List<Administrador> getAdmin() {
-		return admin;
-	}
-	public void setAdmin(List<Administrador> admin) {
-		this.admin = admin;
-	}
 	public List<Historico> getHistoricos() {
 		return historicos;
 	}
@@ -155,12 +101,6 @@ public class Sistema {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
 	public List<Fornecedor> getFornecedores() {
 		return fornecedores;
 	}
@@ -172,12 +112,6 @@ public class Sistema {
 	}
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
-	}
-	public List<Venda> getVendas() {
-		return vendas;
-	}
-	public void setVendas(List<Venda> vendas) {
-		this.vendas = vendas;
 	}
 	public List<Compra> getCompras() {
 		return compras;

@@ -2,8 +2,6 @@ package hello;
 
 import static spark.Spark.get;
 
-import java.util.List;
-
 import com.google.gson.Gson;
 
 public class Controller {
@@ -33,15 +31,6 @@ public class Controller {
 		});
 	}
 	
-	public void buscarCliente()
-	{
-		get("/estoqueCliente/:codigocliente", (req, res) ->
-		{
-			Cliente clienteEncontrado = sistema.searchCliente(Integer.parseInt(req.params(":codigocliente")));
-			return new Gson().toJson(clienteEncontrado);
-		});
-	}
-	
 	public void buscarFornecedor()
 	{
 		get("/estoqueFornecedor/:cnpj", (req, res) ->
@@ -57,15 +46,6 @@ public class Controller {
 		{
 			Compra compraEncontrada = sistema.searchCompra(Integer.parseInt(req.params(":codigocompra")));
 			return new Gson().toJson(compraEncontrada);
-		});
-	}
-	
-	public void buscarVenda()
-	{
-		get("/estoqueVenda/:codigo", (req, res) ->
-		{
-			Venda vendaEncontrada = sistema.searchVenda(Integer.parseInt(req.params(":codigo")));
-			return new Gson().toJson(vendaEncontrada);
 		});
 	}	
 }

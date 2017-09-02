@@ -28,19 +28,17 @@ public class MainServer {
 
 		inicializarProdutos();
 		inicializarUsuarios();
-		inicializarClientes();
 		inicializarFornecedores();
 		inicializarCompras();
-		inicializarVendas();
+
 		
 		Controller controller = new Controller(sistema);
 		
 		controller.buscarProduto();
 		controller.buscarUsuario();
-		controller.buscarCliente();
 		controller.buscarFornecedor();
 		controller.buscarCompra();
-		controller.buscarVenda();
+		
     }
     
     public static void inicializarProdutos(){
@@ -52,17 +50,10 @@ public class MainServer {
     	sistema.addUsuario(new Usuario("ruben", "rbn", "123", 01, "estudante", LocalDate.of(2017, Month.AUGUST, 18)));
     	sistema.addUsuario(new Usuario("eduardo", "ed", "789", 02, "estudante", LocalDate.of(2017, Month.AUGUST, 18)));
     }
-    public static void inicializarClientes(){
-    	sistema.addCliente(new Cliente(01, "ruben", "111-11", "Rua Alta", "1111-1111", LocalDate.of(2017, Month.AUGUST, 18)));
-    	sistema.addCliente(new Cliente(02, "eduardo", "222-22", "Rua Baixa", "2222-2222", LocalDate.of(2017, Month.AUGUST, 18)));
-    }
     public static void inicializarFornecedores(){
     	sistema.addFornecedor(new Fornecedor("Apple", 01, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(sistema.getProdutos())));
     }
     public static void inicializarCompras(){    	 	
     	sistema.addCompra(new Compra(23.00f, LocalDate.of(2017, Month.AUGUST, 18), new LinkedList<Produto>(sistema.getProdutos()), new LinkedList<Fornecedor>(sistema.getFornecedores()), 01));
-    }
-    public static void inicializarVendas(){
-    	sistema.addVenda(new Venda(34.00f, "Débito", LocalDate.of(2017, Month.AUGUST, 18), 01, new LinkedList<Produto>(sistema.getProdutos())));
     }
 }
