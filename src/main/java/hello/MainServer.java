@@ -42,10 +42,10 @@ public class MainServer {
     }
     
     public static void inicializarProdutos(){
-    	sistema.addProduto(new Produto("Monitor", 8.00f, 12.50f, 01, "Monitor LCD", 3, LocalDate.of(2017, Month.FEBRUARY, 10)));
+    	sistema.addProduto(new Produto("Apple", 8.00f, 12.50f, 01, "Monitor LCD", 3, LocalDate.of(2017, Month.FEBRUARY, 10)));
     	sistema.addProduto(new Produto("Cadeira", 10.00f, 18.00f, 02, "Cadeira de couro", 7, LocalDate.of(2017, Month.FEBRUARY, 10)));
+    	sistema.addProduto(new Produto("Apple", 48.00f, 56.50f, 03, "Bebedouro prata", 22, LocalDate.of(2017, Month.JANUARY, 30)));
     }
-    
     public static void inicializarUsuarios(){
     	sistema.addUsuario(new Usuario("ruben", "rbn", "123", 01, "estudante", LocalDate.of(2017, Month.AUGUST, 18)));
     	sistema.addUsuario(new Usuario("eduardo", "ed", "789", 02, "estudante", LocalDate.of(2017, Month.AUGUST, 18)));

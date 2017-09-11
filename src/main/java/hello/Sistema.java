@@ -25,6 +25,15 @@ public class Sistema {
 		} 
 		return null;
 	}
+	public LinkedList<Produto> searchProdutoList(String nome){
+		LinkedList<Produto> lTemp = new LinkedList<Produto>();
+		for(Produto temp:produtos){
+			if(temp.getNome().equals(nome))
+				lTemp.add(temp); 
+			return lTemp;
+		}
+		return null;
+	}
 	/*---------Usuários----------*/
 	public void addUsuario(Usuario usuario){
 		usuarios.add(usuario);

@@ -6,14 +6,18 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
 
+import org.junit.Test;
+
 public class TesteRuben {
 	
-	public static void main(String[] args){
+	@Test
+	public void teste(){
 	
 		Sistema sist = new Sistema();
 		
-		Produto p1 = new Produto("Teclado", 15.50f, 20.50f, 111111, "Teclado comum", 3, LocalDate.of(2017, Month.FEBRUARY, 10));
+		Produto p1 = new Produto("Apple", 8.00f, 12.50f, 01, "Monitor LCD", 3, LocalDate.of(2017, Month.FEBRUARY, 10));
 		Produto p2 = new Produto("Monitor 15 Pol.", 234.90f, 310.50f, 222222, "Monitor LG 15 Polegadas", 5, LocalDate.of(2017, Month.FEBRUARY, 28));
+		Produto p3 = new Produto("Apple", 48.00f, 56.50f, 03, "Bebedouro prata", 22, LocalDate.of(2017, Month.JANUARY, 30));
 		
 		Fornecedor f1 = new Fornecedor("Apple", 1111, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.FEBRUARY, 10), new LinkedList<Produto>(sist.getProdutos()));
 		Fornecedor f2 = new Fornecedor("Google", 2222, "b@gmail.com", "2222-2222", "Rua Baixa", LocalDate.of(2017, Month.FEBRUARY, 10), new LinkedList<Produto>(sist.getProdutos()));
@@ -24,12 +28,18 @@ public class TesteRuben {
 	
 		sist.addProduto(p1);
 		sist.addProduto(p2);
+		sist.addProduto(p3);
 		
 		assertEquals(sist.getProdutos().size(), 2);
 	
 		Produto produtoBuscado = sist.searchProduto(111111);
 	
 		assertEquals(sist.getProdutos().get(0).getNome(), "Teclado");
+		
+		LinkedList<Produto> lProd = new LinkedList();
+		lProd = sist.searchProdutoList("Apple");
+		
+		assertEquals(sist.searchProdutoList("Apple").size(), 2);
 		
 	}
 }
