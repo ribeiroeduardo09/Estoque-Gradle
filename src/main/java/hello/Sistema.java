@@ -29,10 +29,9 @@ public class Sistema {
 		LinkedList<Produto> lTemp = new LinkedList<Produto>();
 		for(Produto temp:produtos){
 			if(temp.getNome().equals(nome))
-				lTemp.add(temp); 
-			return lTemp;
+				lTemp.add(temp);	
 		}
-		return null;
+		return lTemp;
 	}
 	/*---------Usuários----------*/
 	public void addUsuario(Usuario usuario){
