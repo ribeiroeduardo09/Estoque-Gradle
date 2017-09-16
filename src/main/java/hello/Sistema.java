@@ -33,21 +33,6 @@ public class Sistema {
 		}
 		return lTemp;
 	}
-	/*---------Usuários----------*/
-	public void addUsuario(Usuario usuario){
-		usuarios.add(usuario);
-	}
-	public void delUsuario(String login){
-		for(Usuario usr:usuarios){
-			if(usr.getLogin()==login) usuarios.remove(usr);
-		}
-	}
-	public Usuario searchUsuario(String login){
-		for(Usuario usr:usuarios){
-			if(usr.getLogin().equals(login)) return usr;
-		}
-		return null;
-	}
 	/*---------Fornecedores----------*/
 	public void addFornecedor(Fornecedor fornecedor){
 		fornecedores.add(fornecedor);
@@ -78,6 +63,21 @@ public class Sistema {
 		}
 		return null;
 	}
+	/*---------Usuários----------*/
+	public void addUsuario(Usuario usuario){
+		usuarios.add(usuario);
+	}
+	public void delUsuario(String login){
+		for(Usuario usr:usuarios){
+			if(usr.getLogin()==login) usuarios.remove(usr);
+		}
+	}
+	public Usuario searchUsuario(String login){
+		for(Usuario usr:usuarios){
+			if(usr.getLogin().equals(login)) return usr;
+		}
+		return null;
+	}
 	
 	/*---------Getters e setters----------*/
 	public List<Produto> getProdutos() {
@@ -92,17 +92,16 @@ public class Sistema {
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
 	}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
 	public List<Compra> getCompras() {
 		return compras;
 	}
 	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
-
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 }
