@@ -26,9 +26,9 @@ public class Controller {
 	}
 	public void buscarProdutoFornecedor()
 	{
-		get("/estoqueProduto/:fornecedor", (req, res) ->
-		{
-			LinkedList<Produto> lProd = new LinkedList<Produto>(sistema.searchProdutoList(req.params(":fornecedor")));
+		get("/estoqueProdutoF/:fornecedor", (req, res) ->
+		{	
+			LinkedList<Produto> lProd = sistema.searchProdutoList(req.params(":fornecedor"));
 			return new Gson().toJson(lProd);
 		});
 	}

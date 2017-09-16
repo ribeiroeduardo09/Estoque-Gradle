@@ -35,6 +35,7 @@ public class MainServer {
 		Controller controller = new Controller(sistema);
 		
 		controller.buscarProduto();
+		controller.buscarProdutoFornecedor();
 		controller.buscarFornecedor();
 		controller.buscarCompra();
 		controller.buscarUsuario();
