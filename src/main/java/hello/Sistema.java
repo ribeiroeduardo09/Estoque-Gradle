@@ -25,10 +25,10 @@ public class Sistema {
 		} 
 		return null;
 	}
-	public LinkedList<Produto> searchProdutoList(String nome){
+	public LinkedList<Produto> searchProdutoList(String fornecedor){
 		LinkedList<Produto> lTemp = new LinkedList<Produto>();
 		for(Produto temp:produtos){
-			if(temp.getNome().equals(nome))
+			if(temp.getFornecedor().equals(fornecedor))
 				lTemp.add(temp);	
 		}
 		return lTemp;

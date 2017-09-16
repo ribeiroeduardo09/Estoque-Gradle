@@ -2,6 +2,8 @@ package hello;
 
 import static spark.Spark.get;
 
+import java.util.LinkedList;
+
 import com.google.gson.Gson;
 
 public class Controller {
@@ -13,6 +15,7 @@ public class Controller {
 		this.sistema = sistema;
 	}
 	
+	//			PRODUTO
 	public void buscarProduto()
 	{
 		get("/estoqueProduto/:codigoproduto", (req, res) ->
@@ -21,16 +24,17 @@ public class Controller {
 			return new Gson().toJson(produtoEncontrado);
 		});
 	}
-	
-	public void buscarUsuario()
+	public void buscarProdutoFornecedor()
 	{
-		get("/estoqueUsuario/:login", (req, res) ->
+		get("/estoqueProduto/:fornecedor", (req, res) ->
 		{
-			Usuario usuarioEncontrado = sistema.searchUsuario(req.params(":login"));
-			return new Gson().toJson(usuarioEncontrado);
+			LinkedList<Produto> lProd = new LinkedList<Produto>(sistema.searchProdutoList(req.params(":fornecedor")));
+			return new Gson().toJson(lProd);
 		});
 	}
 	
+
+	//			FORNECEDOR
 	public void buscarFornecedor()
 	{
 		get("/estoqueFornecedor/:cnpj", (req, res) ->
@@ -39,7 +43,7 @@ public class Controller {
 			return new Gson().toJson(fornecedorEncontrado);
 		});
 	}
-	
+	//			COMPRA
 	public void buscarCompra()
 	{
 		get("/estoqueCompra/:codigocompra", (req, res) ->
@@ -47,5 +51,14 @@ public class Controller {
 			Compra compraEncontrada = sistema.searchCompra(Integer.parseInt(req.params(":codigocompra")));
 			return new Gson().toJson(compraEncontrada);
 		});
-	}	
+	}
+	//			USUARIO
+	public void buscarUsuario()
+	{
+		get("/estoqueUsuario/:login", (req, res) ->
+		{
+			Usuario usuarioEncontrado = sistema.searchUsuario(req.params(":login"));
+			return new Gson().toJson(usuarioEncontrado);
+		});
+	}
 }

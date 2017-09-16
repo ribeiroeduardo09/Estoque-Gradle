@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Produto {
 	
 	private String nome;
+	private String fornecedor;
 	private Float valorcompra;
 	private Float valorvenda;
 	private int codigoproduto;
@@ -12,8 +13,9 @@ public class Produto {
 	private int quantidade;
 	private LocalDate datacad;
 	
-	public Produto(String nome, Float valorcompra, Float valorvenda, int codigoproduto, String descricao, int quantidade, LocalDate datacad){
+	public Produto(String nome, String fornecedor, Float valorcompra, Float valorvenda, int codigoproduto, String descricao, int quantidade, LocalDate datacad){
 		this.nome = nome;
+		this.fornecedor = fornecedor;
 		this.valorcompra = valorcompra;
 		this.valorvenda = valorvenda;
 		this.codigoproduto = codigoproduto;
@@ -27,6 +29,13 @@ public class Produto {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getFornecedor() {
+		return fornecedor;
+	}
+	
+	public void setFornecedor(String fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 	public Float getValorcompra() {
 		return valorcompra;
