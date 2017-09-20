@@ -16,22 +16,16 @@ public class Sistema {
 	}
 	public void delProduto(int codigoproduto){
 		for(Produto prod:produtos){
-			if(prod.getCodigoproduto()==codigoproduto) produtos.remove(prod);
+			if(prod.getCodigoproduto()==codigoproduto)
+				produtos.remove(prod);
 		}
 	}
 	public Produto searchProduto(int codigoproduto){
 		for(Produto prod:produtos){
-			if(prod.getCodigoproduto() == codigoproduto) return prod;
+			if(prod.getCodigoproduto() == codigoproduto)
+				return prod;
 		} 
 		return null;
-	}
-	public LinkedList<Produto> searchProdutoList(String fornecedor){
-		LinkedList<Produto> lTemp = new LinkedList<Produto>();
-		for(Produto temp:produtos){
-			if(temp.getFornecedor().equals(fornecedor))
-				lTemp.add(temp);	
-		}
-		return lTemp;
 	}
 	/*---------Fornecedores----------*/
 	public void addFornecedor(Fornecedor fornecedor){
@@ -39,14 +33,31 @@ public class Sistema {
 	}
 	public void delFornecedor(int cnpj){
 		for(Fornecedor fncdr:fornecedores){
-			if(fncdr.getCnpj()==cnpj) fornecedores.remove(fncdr);
+			if(fncdr.getCnpj()==cnpj)
+				fornecedores.remove(fncdr);
 		}
 	}
 	public Fornecedor searchFornecedor(int cnpj){
 		for(Fornecedor fncdr:fornecedores){
-			if(fncdr.getCnpj()==cnpj) return fncdr;
+			if(fncdr.getCnpj()==cnpj)
+				return fncdr;
 		}
 		return null;
+	}
+	public LinkedList<Produto> searchFornecedorListP(int cnpj){
+		LinkedList<Produto> lTemp = new LinkedList<Produto>();
+		Fornecedor forn = null;
+		for(Fornecedor tempForn:fornecedores){
+				if(tempForn.getCnpj() == cnpj)
+					forn = tempForn;
+		}
+		for(Produto tempProd:produtos){
+			for(Produto tempProd2:forn.getProdutos()){
+				if(tempProd.getCodigoproduto() == tempProd2.getCodigoproduto())
+					lTemp.add(tempProd);
+			}
+		}
+		return lTemp;
 	}
 	/*---------Compras----------*/
 	public void addCompra(Compra compra){
@@ -54,12 +65,14 @@ public class Sistema {
 	}
 	public void delCompra(int codigocompra){
 		for(Compra comp:compras){
-			if(comp.getCodigocompra()==codigocompra) compras.remove(comp);
+			if(comp.getCodigocompra()==codigocompra)
+				compras.remove(comp);
 		}
 	}
 	public Compra searchCompra(int codigocompra){
 		for(Compra comp:compras){
-			if(comp.getCodigocompra()==codigocompra) return comp;
+			if(comp.getCodigocompra()==codigocompra)
+				return comp;
 		}
 		return null;
 	}
@@ -69,14 +82,23 @@ public class Sistema {
 	}
 	public void delUsuario(String login){
 		for(Usuario usr:usuarios){
-			if(usr.getLogin()==login) usuarios.remove(usr);
+			if(usr.getLogin().equals(login))
+				usuarios.remove(usr);
 		}
 	}
 	public Usuario searchUsuario(String login){
 		for(Usuario usr:usuarios){
-			if(usr.getLogin().equals(login)) return usr;
+			if(usr.getLogin().equals(login))
+				return usr;
 		}
 		return null;
+	}
+	public boolean logarUsuario(String login, String senha){
+		for(Usuario usr:usuarios){
+			if(usr.getLogin().equals(login) && usr.getSenha().equals(senha))
+				return true;
+		}
+		return false;
 	}
 	
 	/*---------Getters e setters----------*/
