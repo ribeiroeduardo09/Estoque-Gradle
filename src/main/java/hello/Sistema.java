@@ -7,8 +7,8 @@ public class Sistema {
 	
 	private List<Produto> produtos = new LinkedList<Produto>();
 	private List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
-	private List<Usuario> usuarios = new LinkedList<Usuario>();
 	private List<Compra> compras = new LinkedList<Compra>();
+	private List<Usuario> usuarios = new LinkedList<Usuario>();
 	
 	/*---------Produtos----------*/
 	public void addProduto(Produto prod){
