@@ -93,72 +93,43 @@
 			</nav>
 		 </div>
 
+		 <ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" href="#">Active</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Link</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Link</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#">Disabled</a>
+			</li>
+		</ul>
+		 
   		<div id="painelBusca">
-            
-		
-		
-            <div class="form-group col-md-4">
-                <label>Modelo</label>
-                <select id="modelo" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
-                    <option value="gol">gol</option>
-                    <option value="fox">fox</option>
-                    <option value="fusca">fusca</option>
-                    
-                </select>
-            </div>
-		
-		
-		
-            <div class="form-group col-md-4">
-                <label>Marca</label>
-                <select id="marca" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
-                    <option value="vw">vw</option>
-                    <option value="fiat">fiat</option>
-                    <option value="ferrari">ferrari</option>
-                    
-                </select>
-            </div>
-		
-		
-		
-            <div class="form-group col-md-4">
-                <label>Cor</label>
-                <select id="cor" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o periodo</option>
-                    <option value="vermelho">vermelho</option>
-                    <option value="verde">verde</option>
-                </select>
-            </div>
-			<button id="busca" class="btn btn-primary col-md-offset-5">Buscar</button>
-		</div>
-		
-
-		<div id="painelPlaca">
-            		
-            <div class="form-group col-md-4">
-                <label>Placa</label>
-				<div>
-					<td><input type="text" id="placa" value="" placeholder="Informe a placa" /> </td>
+			<form>
+				<div class="form-group">
+					Encontrar o fornecedor pelo CNPJ.
+					<label>CNPJ</label>
+					<input id="codigoproduto" class="form-control"/>
 				</div>
-                <button id="buscaPlaca" class="btn btn-primary col-md-offset-1">Buscar</button>
-            </div>
+				<button type="submit" id="busca" class="btn btn-primary">Buscar</button>
+			</form>
 		</div>
-
-		
-		
-		
 		
 		
 		<table class="table table-bordered"> 
-			<caption>CARROS ENCONTRADOS</caption>
+			<caption>FORNECEDORES ENCONTRADOS</caption>
 				<thead>
 					<tr> 
-						<th>Placa</th>
-						<th>Modelo</th> 
-						<th>Marca</th> 
-						<th>Cor</th> 
+						<th>Empresa</th>
+						<th>CNPJ</th> 
+						<th>Valor de Compra</th> 
+						<th>Descrição</th>
+						<th>Quantidade</th>
+						<th>Data do Cadastro</th>
 					</tr> 
 				</thead> 
 				
