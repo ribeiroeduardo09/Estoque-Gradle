@@ -16,7 +16,7 @@ public class Controller {
 		this.sistema = sistema;
 	}
 	
-	//			PRODUTO
+	/*---------Produtos----------*/
 	public void addProduto()
 	{
 		get("/estoqueProdAdd/:nome/:valorcompra/:codigoproduto/:descricao/:quantidade/:datacad", (req, res) ->
@@ -45,7 +45,9 @@ public class Controller {
 			return new Gson().toJson(produtoEncontrado);
 		});
 	}
-	//			FORNECEDOR
+	
+	/*---------Fornecedores----------*/
+	//Add
 	public void addFornecedor()
 	{
 		get("/estoqueFornAdd/:nomeFornecedor/:cnpj/:email/:telefone/:endereco/:datacadastroforn/:produtos", (req, res) ->
@@ -71,6 +73,8 @@ public class Controller {
 			return "Fornecedor " + req.params(":CNPJ") + " adicionado com sucesso!";
 		});
 	}
+	
+	//Del
 	public void delFornecedor()
 	{
 		get("/estoqueFornDel/:cnpj", (req, res) ->
@@ -79,6 +83,8 @@ public class Controller {
 			return "Fornecedor " + req.params(":cnpj") + " deletado com sucesso!";
 		});
 	}
+	
+	//Search
 	public void buscarFornecedor()
 	{
 		get("/estoqueFornBuscar/:cnpj", (req, res) ->
@@ -95,7 +101,16 @@ public class Controller {
 			return new Gson().toJson(lProd);
 		});
 	}
-	//			COMPRA
+	public void buscarFornecedorNome()
+	{
+		get("/estoqueFornBuscarN/:nomeForn", (req, res) ->
+		{
+			LinkedList<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeFornecedor"));
+			return new Gson().toJson(fornecedorEncontrado);
+		});
+	}
+	
+	/*---------Compras----------*/
 	public void addCompra()
 	{
 		get("/estoqueCompAdd/:valortotal/:datacompra/:produtos/:fornecedores/:codigocompra", (req, res) ->
@@ -148,7 +163,8 @@ public class Controller {
 			return new Gson().toJson(compraEncontrada);
 		});
 	}
-	//			USUARIO
+	
+	/*---------Usuários----------*/
 	public void addUsuario()
 	{
 		get("/estoqueUsuaAdd/:nomeusuario/:login/:senha/:matricula/:cargo/:datacadastro", (req, res) ->

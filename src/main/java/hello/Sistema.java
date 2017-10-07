@@ -59,6 +59,17 @@ public class Sistema {
 		}
 		return lTemp;
 	}
+	
+	public LinkedList<Fornecedor> searchFornecedorNome(String nomeFornecedor){
+		LinkedList<Fornecedor> fornList = new LinkedList<Fornecedor>();
+		for(Fornecedor fornTemp:fornecedores) {
+			if(fornTemp.getNome().toLowerCase().contains(nomeFornecedor.toLowerCase())) {
+				fornList.add(fornTemp);
+			}
+		}
+		return fornList;
+	}
+	
 	/*---------Compras----------*/
 	public void addCompra(Compra compra){
 		compras.add(compra);
