@@ -15,6 +15,6 @@ public class Teste {
 	Fornecedor f4 = new Fornecedor("Vila Velha LTDA", 4444, "d@gmail.com", "4444-4444", "Rua Média", LocalDate.of(2017, Month.FEBRUARY, 10), new LinkedList<Produto>(sistema.getProdutos()));
 	Fornecedor f5 = new Fornecedor("Vila Nova LTDA", 5555, "e@gmail.com", "5555-5555", "Rua Média", LocalDate.of(2017, Month.FEBRUARY, 10), new LinkedList<Produto>(sistema.getProdutos()));
 	
-	System.out.println("Teste");
+	System.out.println('Teste');
 	
 }
