@@ -1,0 +1,7 @@
+Estoque:
+	Inicia em branco
+	Buscar produto específico
+	Listar todos os produtos
+	Remover produto
+	
+	
