@@ -3,8 +3,20 @@ package hello;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+
 public class Sistema {
 	
+	/*---------Import do Banco de Dados----------*/
+	ObjectContainer students = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/students.db4o");
+	ObjectContainer questions = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/questions.db4o");
+	ObjectContainer competencies = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/competencies.db4o");
+	ObjectContainer institutions = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/institutions.db4o");
+	ObjectContainer psychologists = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/psychologists.db4o");
+	ObjectContainer adms = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "bd/adms.db4o");
+	
+	/*---------Declaração----------*/
 	private List<Produto> produtos = new LinkedList<Produto>();
 	private List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
 	private List<Compra> compras = new LinkedList<Compra>();
