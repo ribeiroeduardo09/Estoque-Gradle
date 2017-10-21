@@ -62,12 +62,9 @@ public class Sistema {
 	
 	public LinkedList<Fornecedor> searchFornecedorNome(String nomeFornecedor){
 		LinkedList<Fornecedor> fornList = new LinkedList<Fornecedor>();
-		System.out.println("1"+nomeFornecedor);
 		for(Fornecedor fornTemp:fornecedores) {
-			System.out.println("2"+fornTemp);
 			if(fornTemp.getNome().toLowerCase().contains(nomeFornecedor.toLowerCase())) {
 				fornList.add(fornTemp);
-				System.out.println("3"+fornTemp);
 			}
 		}
 		return fornList;

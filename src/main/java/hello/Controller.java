@@ -105,7 +105,7 @@ public class Controller {
 	{
 		get("/estoqueFornBuscarN/:nomeForn", (req, res) ->
 		{
-			LinkedList<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeFornecedor"));
+			LinkedList<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeForn"));
 			return new Gson().toJson(fornecedorEncontrado);
 		});
 	}
