@@ -4,6 +4,7 @@ import static spark.Spark.get;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -105,7 +106,7 @@ public class Controller {
 	{
 		get("/estoqueFornBuscarN/:nomeForn", (req, res) ->
 		{
-			LinkedList<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeForn"));
+			List<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeForn"));
 			return new Gson().toJson(fornecedorEncontrado);
 		});
 	}

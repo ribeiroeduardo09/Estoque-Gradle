@@ -37,7 +37,7 @@ public class Sistema {
 	}
 
 	public void delProduto(int codigoproduto) {
-		
+
 		Query query = products.query();
 		query.constrain(Produto.class);
 		List<Produto> allProducts = query.execute();
@@ -45,7 +45,7 @@ public class Sistema {
 		for (Produto prod : allProducts) {
 			if (prod.getCodigoproduto() == codigoproduto)
 				products.delete(codigoproduto);
-				products.commit();
+			products.commit();
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Sistema {
 	}
 
 	public boolean isProuctAvailable(int codigoproduto) {
-		
+
 		Query query = products.query();
 		query.constrain(Produto.class);
 		ObjectSet<Produto> allProducts = query.execute();
@@ -78,7 +78,7 @@ public class Sistema {
 
 	/*---------Fornecedores----------*/
 	public boolean addFornecedor(Fornecedor fornecedor) {
-		
+
 		if (isProviderAvailable(fornecedor.getCnpj())) {
 
 			providers.store(fornecedor);
@@ -96,14 +96,15 @@ public class Sistema {
 		List<Fornecedor> allProviders = query.execute();
 
 		for (Fornecedor fornecedor : allProviders) {
-			if (fornecedor.getCnpj() == cnpj)
+			if (fornecedor.getCnpj() == cnpj) {
 				providers.delete(cnpj);
 				providers.commit();
+			}
 		}
 	}
 
 	public Fornecedor searchFornecedor(int cnpj) {
-		
+
 		Query query = providers.query();
 		query.constrain(Fornecedor.class);
 		ObjectSet<Fornecedor> allProviders = query.execute();
@@ -116,100 +117,174 @@ public class Sistema {
 		return null;
 	}
 
-	public LinkedList<Produto> searchFornecedorListP(int cnpj) { //TODO Passar este método para o Banco de Dados.
+	public LinkedList<Produto> searchFornecedorListP(int cnpj) { // TODO Passar este método para o Banco de Dados.
 		LinkedList<Produto> lTemp = new LinkedList<Produto>();
 		Fornecedor forn = null;
 		for (Fornecedor tempForn : fornecedores) {
-			if (tempForn.getCnpj() == cnpj)
+			if (tempForn.getCnpj() == cnpj) {
 				forn = tempForn;
+			}
 		}
 		for (Produto tempProd : produtos) {
 			for (Produto tempProd2 : forn.getProdutos()) {
-				if (tempProd.getCodigoproduto() == tempProd2.getCodigoproduto())
+				if (tempProd.getCodigoproduto() == tempProd2.getCodigoproduto()) {
 					lTemp.add(tempProd);
+				}
 			}
 		}
 		return lTemp;
 	}
-	
-	
 
 	public List<Fornecedor> searchFornecedorNome(String nomeFornecedor) {
-		
+
 		List<Fornecedor> fornList = new LinkedList<Fornecedor>();
-		
+
 		Query query = providers.query();
 		query.constrain(Fornecedor.class);
 		ObjectSet<Fornecedor> allProviders = query.execute();
-		
+
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getNome().toLowerCase().contains(nomeFornecedor.toLowerCase())) {
 				fornList.add(fornecedor);
 			}
 		}
-		
+
 		return fornList;
 	}
 
 	public boolean isProviderAvailable(int cnpj) {
-		
+
 		Query query = providers.query();
 		query.constrain(Fornecedor.class);
 		ObjectSet<Fornecedor> allProviders = query.execute();
 
 		for (Fornecedor fornecedor : allProviders) {
-			if (fornecedor.getCnpj() == (cnpj))
+			if (fornecedor.getCnpj() == (cnpj)) {
 				return false;
+			}
 		}
 		return true;
 	}
 
 	/*---------Compras----------*/
-	public void addCompra(Compra compra) {
-		compras.add(compra);
+	public boolean addCompra(Compra compra) {
+
+		if (isPurchaseAvailable(compra.getCodigocompra())) {
+
+			purchases.store(compra);
+			purchases.commit();
+
+			return true;
+		}
+		return false;
 	}
 
 	public void delCompra(int codigocompra) {
-		for (Compra comp : compras) {
-			if (comp.getCodigocompra() == codigocompra)
-				compras.remove(comp);
+
+		Query query = purchases.query();
+		query.constrain(Compra.class);
+		List<Compra> allPurchases = query.execute();
+
+		for (Compra compra : allPurchases) {
+			if (compra.getCodigocompra() == codigocompra) {
+				purchases.delete(codigocompra);
+				purchases.commit();
+			}
 		}
 	}
 
 	public Compra searchCompra(int codigocompra) {
-		for (Compra comp : compras) {
-			if (comp.getCodigocompra() == codigocompra)
-				return comp;
+
+		Query query = purchases.query();
+		query.constrain(Compra.class);
+		List<Compra> allPurchases = query.execute();
+
+		for (Compra compra : allPurchases) {
+			if (compra.getCodigocompra() == codigocompra)
+				return compra;
 		}
 		return null;
+	}
+
+	public boolean isPurchaseAvailable(int codigocompra) {
+
+		Query query = purchases.query();
+		query.constrain(Compra.class);
+		ObjectSet<Compra> allPurchases = query.execute();
+
+		for (Compra compra : allPurchases) {
+			if (compra.getCodigocompra() == codigocompra) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/*---------Usuários----------*/
 	public void addUsuario(Usuario usuario) {
-		usuarios.add(usuario);
+
+		if (isUserAvailable(usuario.getLogin())) {
+			users.store(usuario);
+			users.commit();
+		}
 	}
 
 	public void delUsuario(String login) {
-		for (Usuario usr : usuarios) {
-			if (usr.getLogin().equals(login))
-				usuarios.remove(usr);
+		
+		Query query = users.query();
+		query.constrain(Usuario.class);
+		ObjectSet<Usuario> allUsers = query.execute();
+		
+		for (Usuario usuario : allUsers) {
+			if(usuario.getLogin().equals(login)) {
+				users.delete(login);
+				users.commit();
+			}
 		}
 	}
 
 	public Usuario searchUsuario(String login) {
-		for (Usuario usr : usuarios) {
-			if (usr.getLogin().equals(login))
-				return usr;
+		
+		Query query = users.query();
+		query.constrain(Usuario.class);
+		ObjectSet<Usuario> allUsers = query.execute();
+		
+		for (Usuario usuario : allUsers) {
+			if(usuario.getLogin().equals(login)) {
+				return usuario;
+			}
 		}
+		
 		return null;
 	}
 
-	public boolean logarUsuario(String login, String senha) {
-		for (Usuario usr : usuarios) {
-			if (usr.getLogin().equals(login) && usr.getSenha().equals(senha))
-				return true;
+	public Usuario logarUsuario(String login, String senha) {
+
+		Query query = users.query();
+		query.constrain(Usuario.class);
+		ObjectSet<Usuario> allUsers = query.execute();
+
+		for (Usuario usuario : allUsers) {
+			if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
+				return usuario;
+			}
 		}
-		return false;
+
+		return null;
+	}
+
+	public boolean isUserAvailable(String login) {
+
+		Query query = users.query();
+		query.constrain(Usuario.class);
+		ObjectSet<Usuario> allUsers = query.execute();
+
+		for (Usuario usuario : allUsers) {
+			if (usuario.getLogin() == login) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/*---------Getters e setters----------*/
