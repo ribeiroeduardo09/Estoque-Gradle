@@ -258,7 +258,7 @@ public class Sistema {
 		return null;
 	}
 
-	public Usuario logarUsuario(String login, String senha) {
+	public boolean logarUsuario(String login, String senha) {
 
 		Query query = users.query();
 		query.constrain(Usuario.class);
@@ -266,11 +266,11 @@ public class Sistema {
 
 		for (Usuario usuario : allUsers) {
 			if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
-				return usuario;
+				return true;
 			}
 		}
 
-		return null;
+		return false;
 	}
 
 	public boolean isUserAvailable(String login) {
