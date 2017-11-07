@@ -25,6 +25,9 @@ public class Sistema {
 
 	/*---------Produtos----------*/
 	public boolean addProduto(Produto prod) {
+		
+		Query query = products.query();
+		query.constrain(Produto.class);
 
 		if (isProuctAvailable(prod.getCodigoproduto())) {
 
@@ -44,8 +47,10 @@ public class Sistema {
 
 		for (Produto prod : allProducts) {
 			if (prod.getCodigoproduto() == codigoproduto)
-				products.delete(codigoproduto);
-			products.commit();
+				
+				products.delete(prod);
+				products.commit();
+				
 		}
 	}
 
@@ -57,7 +62,9 @@ public class Sistema {
 
 		for (Produto produto : allProducts) {
 			if (produto.getCodigoproduto() == codigoproduto) {
+				
 				return produto;
+				
 			}
 		}
 		return null;
@@ -71,14 +78,16 @@ public class Sistema {
 
 		for (Produto produto : allProducts) {
 			if (produto.getCodigoproduto() == (codigoproduto))
+				
 				return false;
+			
 		}
 		return true;
 	}
 
 	/*---------Fornecedores----------*/
 	public boolean addFornecedor(Fornecedor fornecedor) {
-
+		
 		if (isProviderAvailable(fornecedor.getCnpj())) {
 
 			providers.store(fornecedor);
@@ -97,8 +106,11 @@ public class Sistema {
 
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getCnpj() == cnpj) {
-				providers.delete(cnpj);
+				
+				System.out.println("Teste");
+				providers.delete(fornecedor);
 				providers.commit();
+				
 			}
 		}
 	}
@@ -117,21 +129,32 @@ public class Sistema {
 		return null;
 	}
 
-	public LinkedList<Produto> searchFornecedorListP(int cnpj) { // TODO Passar este método para o Banco de Dados.
+	public LinkedList<Produto> searchFornecedorListP(int cnpj) {
 		LinkedList<Produto> lTemp = new LinkedList<Produto>();
 		Fornecedor forn = null;
-		for (Fornecedor tempForn : fornecedores) {
-			if (tempForn.getCnpj() == cnpj) {
-				forn = tempForn;
+		
+		Query query = providers.query();
+		query.constrain(Fornecedor.class);
+		ObjectSet<Fornecedor> allProviders = query.execute();
+		
+		Query query2 = products.query();
+		query2.constrain(Produto.class);
+		ObjectSet<Produto> allProducts = query2.execute();
+		
+		for (Fornecedor fornecedor : allProviders) {
+			if (fornecedor.getCnpj() == cnpj) {
+				forn = fornecedor;
 			}
 		}
-		for (Produto tempProd : produtos) {
-			for (Produto tempProd2 : forn.getProdutos()) {
-				if (tempProd.getCodigoproduto() == tempProd2.getCodigoproduto()) {
-					lTemp.add(tempProd);
+		
+		for (Produto produto : allProducts) {
+			for (Produto produto2 : forn.getProdutos()) {
+				if (produto.getCodigoproduto() == produto2.getCodigoproduto()) {
+					lTemp.add(produto);
 				}
 			}
 		}
+		
 		return lTemp;
 	}
 
@@ -187,7 +210,7 @@ public class Sistema {
 
 		for (Compra compra : allPurchases) {
 			if (compra.getCodigocompra() == codigocompra) {
-				purchases.delete(codigocompra);
+				purchases.delete(compra);
 				purchases.commit();
 			}
 		}
@@ -224,8 +247,10 @@ public class Sistema {
 	public void addUsuario(Usuario usuario) {
 
 		if (isUserAvailable(usuario.getLogin())) {
+			
 			users.store(usuario);
 			users.commit();
+			
 		}
 	}
 
@@ -237,8 +262,10 @@ public class Sistema {
 		
 		for (Usuario usuario : allUsers) {
 			if(usuario.getLogin().equals(login)) {
-				users.delete(login);
+				
+				users.delete(usuario);
 				users.commit();
+				
 			}
 		}
 	}
