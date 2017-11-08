@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
 		<title>Estoque</title>
 
 		<script src="js/jquery.js"></script>
@@ -10,35 +11,21 @@
 
 		<script>
 			$(document).ready(function(){
-				$("#buscaTTT").click(function() {
-					var modelo = $( "#modelo option:selected" ).text();
-					var marca = $( "#marca option:selected" ).text();
-					var cor = $( "#cor option:selected" ).text();
-					$("#dadosCarro").empty();
-					var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
-					$.getJSON(url, function(data) {
-						var itens = [];
-						$.each(data, function(i){
-							itens.push("<tr> <td>"+ this.placa +"</td><td>"+ this.espc.modelo + "</td><td>"+ this.espc.marca + "</td><td>"+ this.espc.cor + "</td></tr>");
-						});
-						$("#dadosCarro").append(itens);
-					});
-				});
-				$("#busca").click(function() {
-					var cnpj = $( "#codigoproduto" ).val();
-					$("#dadosProduto").empty();
+				$("#buscaForn").click(function() {
+					var cnpj = $( "#cnpj" ).val();
+					$("#dadosFornecedor").empty();
 					var url = "/estoqueFornBuscar/" + cnpj;					
 					$.getJSON(url, function(data) {			
 						var itens = [];
-						itens.push("<tr> <td>"+ data.placa +"</td><td>"+ data.espc.modelo + "</td><td>"+ data.espc.marca + "</td><td>"+ data.espc.cor + "</td></tr>");
-						$("#dadosProduto").append(itens);
+						itens.push("<tr> <td>" + data.cnpj + "</td><td>" + data.nomeFornecedor + "</td><td>" + data.email + "</td><td>" + data.telefone + "</td><td>" + data.endereco + "</td><td>" + data.datacadastroforn.day + "/" + data.datacadastroforn.month + "/" + data.datacadastroforn.year + "</td><td>" + data.produtos + "</td></tr>");
+						$("#dadosFornecedor").append(itens);
 					});	
 				});
 			});
 		</script>
 	</head>
 	<body>
-		<div> <!-- Navigation bar -->
+		<div> <!-- Barra de navegação -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="#">Estoque</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,28 +64,27 @@
 			</li>
 		</ul>
   		<div id="painelBusca">
-			<form>
-				<div class="form-group">
-					Encontrar o fornecedor pelo CNPJ</br>
-					<label>CNPJ</label>
-					<input id="codigoproduto" class="form-control"/>
-				</div>
-				<button type="submit" id="busca" class="btn btn-primary">Buscar</button>
-			</form>
+			<div class="form-group">
+				<label>ENCONTRAR FORNECEDOR PELO CNPJ</label>
+				<td><input type="text" id="cnpj" value="" placeholder="Informe o CNPJ" class="form-control"/></td>
+				</br>
+				<button id="buscaForn" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
+		<caption>FORNECEDORES ENCONTRADOS</caption>
 		<table class="table table-bordered"> 
-			<caption>FORNECEDORES ENCONTRADOS</caption>
 			<thead>
-				<tr> 
-					<th>Empresa</th>
-					<th>CNPJ</th> 
-					<th>Valor de Compra</th> 
-					<th>Descrição</th>
-					<th>Quantidade</th>
+				<tr>
+					<th>CNPJ</th>
+					<th>Fornecedor</th>
+					<th>Email</th> 
+					<th>Telefone</th>
+					<th>Endereco</th>
 					<th>Data do Cadastro</th>
+					<th>Produtos</th>
 				</tr> 
 			</thead> 
-			<tbody id="dadosProduto"></tbody> 
+			<tbody id="dadosFornecedor"></tbody> 
 		</table>
 	</body>
 </html>

@@ -11,28 +11,14 @@
 		
 		<script>
 			$(document).ready(function(){
-				$("#busca").click(function() {
-					var modelo = $( "#modelo option:selected" ).text();
-					var marca = $( "#marca option:selected" ).text();
-					var cor = $( "#cor option:selected" ).text();
-					$("#dadosCarro").empty();
-					var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
-					$.getJSON(url, function(data) {
-						var itens = [];
-						$.each(data, function(i){
-							itens.push("<tr> <td>"+ this.placa +"</td><td>"+ this.espc.modelo + "</td><td>"+ this.espc.marca + "</td><td>"+ this.espc.cor + "</td></tr>");
-						});
-						$("#dadosCarro").append(itens);
-					});
-				});
-				$("#buscaPlaca").click(function() {
-					var placa = $( "#placa" ).val();
-					$("#dadosCarro").empty();
-					var url = "/carroPlaca/"+placa;
+				$("#buscaComp").click(function() {
+					var codCompra = $( "#codigocompra" ).val();
+					$("#dadosCompra").empty();
+					var url = "/estoqueCompBuscar/"+codCompra;
 					$.getJSON(url, function(data) {			
 						var itens = [];
-						itens.push("<tr> <td>"+ data.placa +"</td><td>"+ data.espc.modelo + "</td><td>"+ data.espc.marca + "</td><td>"+ data.espc.cor + "</td></tr>");
-						$("#dadosCarro").append(itens);
+						itens.push("<tr> <td>" + data.codigocompra + "</td><td>" + data.valortotal + "</td><td>" + data.datacompra.day + "/" + data.datacompra.month + "/" + data.datacompra.year + "</td><td>" + data.produtos + "</td><td>" + data.fornecedores + "</td></tr>");
+						$("#dadosCompra").append(itens);
 					});	
 				});
 			});
@@ -63,55 +49,26 @@
 				</div>
 			</nav>
 		</div>
-  		<div id="painelBusca">
-            <div class="form-group col-md-4">
-                <label>Modelo</label>
-                <select id="modelo" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
-                    <option value="gol">gol</option>
-                    <option value="fox">fox</option>
-                    <option value="fusca">fusca</option>  
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label>Marca</label>
-                <select id="marca" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
-                    <option value="vw">vw</option>
-                    <option value="fiat">fiat</option>
-                    <option value="ferrari">ferrari</option>  
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label>Cor</label>
-                <select id="cor" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o periodo</option>
-                    <option value="vermelho">vermelho</option>
-                    <option value="verde">verde</option>
-                </select>
-            </div>
-			<button id="busca" class="btn btn-primary col-md-offset-5">Buscar</button>
+		<div id="painelBusca">
+			<div class="form-group">
+				<label>ENCONTRAR COMPRA PELO CÓDIGO</label>
+				<td><input type="text" id="codigocompra" value="" placeholder="Informe o código da compra" class="form-control"/></td>
+				</br>
+				<button id="buscaComp" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
-		<div id="painelPlaca">	
-            <div class="form-group col-md-4">
-                <label>Placa</label>
-				<div>
-					<td><input type="text" id="placa" value="" placeholder="Informe a placa" /> </td>
-				</div>
-                <button id="buscaPlaca" class="btn btn-primary col-md-offset-1">Buscar</button>
-            </div>
-		</div>
+		<caption>COMPRAS ENCONTRADAS</caption>
 		<table class="table table-bordered"> 
-			<caption>CARROS ENCONTRADOS</caption>
 			<thead>
 				<tr> 
-					<th>Placa</th>
-					<th>Modelo</th> 
-					<th>Marca</th> 
-					<th>Cor</th> 
+					<th>Código</th>
+					<th>Valor total</th> 
+					<th>Data da compra</th>
+					<th>Produtos</th>
+					<th>Fornecedores</th>
 				</tr> 
-			</thead> 
-			<tbody id="dadosCarro"></tbody> 
+			</thead>
+			<tbody id="dadosCompra"></tbody> 
 		</table>
 	</body>
 </html>

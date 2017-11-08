@@ -11,16 +11,14 @@
 
 		<script>
 			$(document).ready(function(){
-				$("#busca").click(function() {
-					var codigoproduto = $( "#codigoproduto" ).val();
+				$("#buscaProd").click(function() {
+					var codProduto = $( "#codigoproduto" ).val();
 					$("#dadosProduto").empty();
-					var url = "/estoqueProdBuscar/"+codigoproduto+"";
+					var url = "/estoqueProdBuscar/"+codProduto;
 					$.getJSON(url, function(data) {
 						var itens = [];
-						$.each(data, function(i){
 							itens.push("<tr> <td>"+ data.codigoproduto + "</td><td>"+ data.nome +"</td><td>"+ data.valorcompra + "</td><td>"+ data.descricao + "</td><td>"+ data.quantidade + "</td><td>"+ data.datacad.day + "/" + data.datacad.month + "/" + data.datacad.year + "</td></tr>");
-						});
-						$("#dadosProduto").append(itens);
+							$("#dadosProduto").append(itens);
 					});
 				});
 			});
@@ -52,16 +50,15 @@
 			</nav>
 		</div>
   		<div id="painelBusca">
-			<form>
-				<div class="form-group">
-					<label>Código do produto</label>
-					<input id="codigoproduto" class="form-control"/>
-				</div>
-				<button onclick="myFunction()" id="busca" class="btn btn-primary">Buscar</button>
-			</form>
+			<div class="form-group">
+				<label>ENCONTRAR PRODUTO PELO CÓDIGO</label>
+				<td><input type="text" id="codigoproduto" value="" placeholder="Informe o código do produto" class="form-control"/></td>
+				</br>
+				<button id="buscaProd" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
+		<caption>PRODUTOS ENCONTRADOS</caption>
 		<table class="table table-bordered"> 
-			<caption>PRODUTOS ENCONTRADOS</caption>
 			<thead>
 				<tr> 
 					<th>Código</th>
@@ -73,6 +70,6 @@
 				</tr> 
 			</thead> 
 			<tbody id="dadosProduto"></tbody> 
-		</table>		
+		</table>
 	</body>
 </html>

@@ -30,9 +30,9 @@
 					$("#dadosCarro").empty();
 					var url = "/carroPlaca/"+placa;
 					$.getJSON(url, function(data) {			
-							var itens = [];
-							itens.push("<tr> <td>"+ data.placa +"</td><td>"+ data.espc.modelo + "</td><td>"+ data.espc.marca + "</td><td>"+ data.espc.cor + "</td></tr>");
-							$("#dadosCarro").append(itens);
+						var itens = [];
+						itens.push("<tr> <td>"+ data.placa +"</td><td>"+ data.espc.modelo + "</td><td>"+ data.espc.marca + "</td><td>"+ data.espc.cor + "</td></tr>");
+						$("#dadosCarro").append(itens);
 					});	
 				});
 			});
@@ -96,7 +96,6 @@
 			<button id="busca" class="btn btn-primary col-md-offset-5">Buscar especificacao</button>
 		</div>
 		<div id="painelPlaca">
-            		
             <div class="form-group col-md-4">
                 <label>Placa</label>
 				<div>
@@ -107,15 +106,15 @@
 		</div>
 		<table class="table table-bordered"> 
 			<caption>CARROS ENCONTRADOS</caption>
-				<thead>
-					<tr> 
-						<th>Placa</th>
-						<th>Modelo</th> 
-						<th>Marca</th> 
-						<th>Cor</th> 
-					</tr> 
-				</thead> 
-				<tbody id="dadosCarro"></tbody>
+			<thead>
+				<tr> 
+					<th>Placa</th>
+					<th>Modelo</th> 
+					<th>Marca</th> 
+					<th>Cor</th> 
+				</tr> 
+			</thead> 
+			<tbody id="dadosCarro"></tbody>
 		</table>	
 	</body>
 </html>
