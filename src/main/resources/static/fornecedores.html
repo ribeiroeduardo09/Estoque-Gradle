@@ -17,7 +17,7 @@
 					var url = "/estoqueFornBuscar/" + cnpj;					
 					$.getJSON(url, function(data) {			
 						var itens = [];
-						itens.push("<tr> <td>" + data.cnpj + "</td><td>" + data.nomeFornecedor + "</td><td>" + data.email + "</td><td>" + data.telefone + "</td><td>" + data.endereco + "</td><td>" + data.datacadastroforn.day + "/" + data.datacadastroforn.month + "/" + data.datacadastroforn.year + "</td><td>" + data.produtos + "</td></tr>");
+						itens.push("<tr> <td>" + data.cnpj + "</td><td>" + data.nomeFornecedor + "</td><td>" + data.email + "</td><td>" + data.telefone + "</td><td>" + data.endereco + "</td><td>" + data.datacadastroforn.day + "/" + data.datacadastroforn.month + "/" + data.datacadastroforn.year + "</td><td>" + data.produtos.nome + "</td></tr>");
 						$("#dadosFornecedor").append(itens);
 					});	
 				});
