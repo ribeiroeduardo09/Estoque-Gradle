@@ -25,18 +25,17 @@ public class Sistema {
 
 	/*---------Produtos----------*/
 	public boolean addProduto(Produto prod) {
-		
-		Query query = products.query();
-		query.constrain(Produto.class);
-
 		if (isProuctAvailable(prod.getCodigoproduto())) {
 
 			products.store(prod);
 			products.commit();
 
 			return true;
+			
 		}
+		
 		return false;
+		
 	}
 
 	public void delProduto(int codigoproduto) {
@@ -67,7 +66,9 @@ public class Sistema {
 				
 			}
 		}
+		
 		return null;
+		
 	}
 
 	public boolean isProuctAvailable(int codigoproduto) {
@@ -82,7 +83,9 @@ public class Sistema {
 				return false;
 			
 		}
+		
 		return true;
+		
 	}
 
 	/*---------Fornecedores----------*/
@@ -94,8 +97,11 @@ public class Sistema {
 			providers.commit();
 
 			return true;
+			
 		}
+		
 		return false;
+		
 	}
 
 	public void delFornecedor(int cnpj) {
@@ -107,7 +113,6 @@ public class Sistema {
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getCnpj() == cnpj) {
 				
-				System.out.println("Teste");
 				providers.delete(fornecedor);
 				providers.commit();
 				
@@ -123,10 +128,14 @@ public class Sistema {
 
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getCnpj() == cnpj) {
+				
 				return fornecedor;
+				
 			}
 		}
+		
 		return null;
+		
 	}
 
 	public LinkedList<Produto> searchFornecedorListP(int cnpj) {
@@ -168,7 +177,9 @@ public class Sistema {
 
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getNome().toLowerCase().contains(nomeFornecedor.toLowerCase())) {
+				
 				fornList.add(fornecedor);
+				
 			}
 		}
 
@@ -183,10 +194,14 @@ public class Sistema {
 
 		for (Fornecedor fornecedor : allProviders) {
 			if (fornecedor.getCnpj() == (cnpj)) {
+				
 				return false;
+				
 			}
 		}
+		
 		return true;
+		
 	}
 
 	/*---------Compras----------*/
@@ -198,8 +213,11 @@ public class Sistema {
 			purchases.commit();
 
 			return true;
+			
 		}
+		
 		return false;
+		
 	}
 
 	public void delCompra(int codigocompra) {
@@ -210,8 +228,10 @@ public class Sistema {
 
 		for (Compra compra : allPurchases) {
 			if (compra.getCodigocompra() == codigocompra) {
+				
 				purchases.delete(compra);
 				purchases.commit();
+				
 			}
 		}
 	}
@@ -224,9 +244,13 @@ public class Sistema {
 
 		for (Compra compra : allPurchases) {
 			if (compra.getCodigocompra() == codigocompra)
+				
 				return compra;
+			
 		}
+		
 		return null;
+		
 	}
 
 	public boolean isPurchaseAvailable(int codigocompra) {
@@ -237,10 +261,14 @@ public class Sistema {
 
 		for (Compra compra : allPurchases) {
 			if (compra.getCodigocompra() == codigocompra) {
+				
 				return false;
+				
 			}
 		}
+		
 		return true;
+		
 	}
 
 	/*---------Usuários----------*/
@@ -278,11 +306,14 @@ public class Sistema {
 		
 		for (Usuario usuario : allUsers) {
 			if(usuario.getLogin().equals(login)) {
+				
 				return usuario;
+				
 			}
 		}
 		
 		return null;
+		
 	}
 
 	public boolean logarUsuario(String login, String senha) {
@@ -293,11 +324,14 @@ public class Sistema {
 
 		for (Usuario usuario : allUsers) {
 			if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
+				
 				return true;
+				
 			}
 		}
 
 		return false;
+		
 	}
 
 	public boolean isUserAvailable(String login) {
@@ -308,7 +342,9 @@ public class Sistema {
 
 		for (Usuario usuario : allUsers) {
 			if (usuario.getLogin() == login) {
+				
 				return false;
+				
 			}
 		}
 		return true;

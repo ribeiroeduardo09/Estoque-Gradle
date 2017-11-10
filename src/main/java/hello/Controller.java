@@ -59,19 +59,32 @@ public class Controller {
 	    	
 	    	String produtosString = req.params(":produtos");
 	    	String[] produtosSeparado = produtosString.split(" ");
+	    	
 	    	LinkedList<Produto> todosProdutos = new LinkedList<Produto>(sistema.getProdutos());
 	    	LinkedList<Produto> produtos = new LinkedList<Produto>();
+	    	
 	    	for(int i = 0; i < produtosSeparado.length; i++){
 	    		for(Produto temp:todosProdutos){
 		    		if(temp.getCodigoproduto() == Integer.parseInt(produtosSeparado[i]))
+		    			
 						produtos.add(temp);
+		    		
 		    	}
 	    	}
+	    	
 	    	if(produtos.size() > 0){
-	    		Fornecedor forn = new Fornecedor(req.params(":nomeFornecedor"), Integer.parseInt(req.params(":cnpj")), req.params(":email"), req.params(":telefone"), req.params(":endereco"), data, produtos);
+	    		Fornecedor forn = new Fornecedor(req.params(":nomeFornecedor"), Integer.parseInt(req.params(":cnpj")), 
+	    				req.params(":email"), req.params(":telefone"), req.params(":endereco"), data, produtos);
+	    		
 	    		sistema.addFornecedor(forn);
-	    	}			
-			return "Fornecedor " + req.params(":CNPJ") + " adicionado com sucesso!";
+	    		
+	    		return "Fornecedor " + req.params(":CNPJ") + " adicionado com sucesso!";
+	    		
+	    	} else {
+	    		
+	    		return "Fornecedor deve ter ao menos um produto para ser cadastrado.";
+	    		
+	    	}
 		});
 	}
 	
