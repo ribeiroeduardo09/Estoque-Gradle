@@ -66,9 +66,7 @@ public class Controller {
 	    	for(int i = 0; i < produtosSeparado.length; i++){
 	    		for(Produto temp:todosProdutos){
 		    		if(temp.getCodigoproduto() == Integer.parseInt(produtosSeparado[i]))
-		    			
-						produtos.add(temp);
-		    		
+						produtos.add(temp);		
 		    	}
 	    	}
 	    	

@@ -30,7 +30,6 @@ public class MainServer {
 		inicializarFornecedores();
 		inicializarCompras();
 		inicializarUsuarios();
-
 		
 		Controller controller = new Controller(sistema);
 		
@@ -56,8 +55,9 @@ public class MainServer {
     	LinkedList<Produto> lista = new LinkedList<Produto>();
     	lista.add(sistema.searchProduto(01));
     	lista.add(sistema.searchProduto(02));
-    	System.out.println(lista.get(0).getCodigoproduto());
-    	System.out.println(lista.get(1).getCodigoproduto());
+    	lista.add(sistema.searchProduto(03));
+    	lista.add(sistema.searchProduto(04));
+    	lista.add(sistema.searchProduto(05));
     	sistema.addFornecedor(new Fornecedor("Apple", 4444, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), lista));
     }
     public static void inicializarCompras() {};

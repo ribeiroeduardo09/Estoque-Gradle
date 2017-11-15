@@ -352,7 +352,11 @@ public class Sistema {
 
 	/*---------Getters e setters----------*/
 	public List<Produto> getProdutos() {
-		return produtos;
+		Query query = products.query();
+		query.constrain(Produto.class);
+		List<Produto> todosProdutos = query.execute();
+		
+		return todosProdutos;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
