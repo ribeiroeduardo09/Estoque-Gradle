@@ -365,7 +365,11 @@ public class Sistema {
 	}
 
 	public List<Compra> getCompras() {
-		return compras;
+		Query query = purchases.query();
+		query.constrain(Compra.class);
+		List<Compra> todasCompras = query.execute();
+		
+		return todasCompras;
 	}
 
 	public void setCompras(List<Compra> compras) {

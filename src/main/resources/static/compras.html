@@ -11,6 +11,44 @@
 		
 		<script>
 			$(document).ready(function(){
+				$("#deleteComp").click(function() {
+					var codigocompra = $( "#deleteCompra" ).val();
+					var url = "/estoqueCompDel/" + codigocompra;					
+					$.getJSON(url);
+					alert("Compra " + codigocompra + " deletada com sucesso!");
+				});
+				
+				$("#buscaTodas").click(function() {
+					$("#dadosCompra").empty();
+					var url = "/estoqueCompBuscarTodas/";					
+					$.getJSON(url, function(data) {			
+						var itens = [];
+						var qtdProd;
+						var qtdForn;
+						var prod;
+						var forn;
+						$.each(data, function(i){
+							this.prod = "";
+							this.forn = "";
+							this.qtdProd = this.produtos.length;
+							this.qtdForn = this.fornecedores.length;
+							
+							for(i = 0; i < this.qtdProd; i++){
+								this.prod += this.produtos[i].codigoproduto + " - ";
+								this.prod += this.produtos[i].nome + "<br>";
+							}
+							for(i = 0; i < this.qtdForn; i++){
+								this.forn += this.fornecedores[i].cnpj + " - ";
+								this.forn += this.fornecedores[i].nomeFornecedor + "<br>";
+							}
+							
+							itens.push("<tr> <td>" + this.codigocompra + "</td><td>" + this.valortotal + "</td><td>" + this.datacompra.day + "/" + this.datacompra.month + "/" + this.datacompra.year + "</td><td>" + this.prod + "</td><td>" + this.forn + "</td></tr>");
+						});
+							
+						$("#dadosCompra").append(itens);
+					});
+				});
+				
 				$("#buscaComp").click(function() {
 					var codCompra = $( "#codigocompra" ).val();
 					$("#dadosCompra").empty();
@@ -46,27 +84,39 @@
 	<body>
 		<div> <!-- Barra de navegação -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="#">Estoque</a>
+				<a class="navbar-brand" href="index.html">Início</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Início</a>
-						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="compras.html">Compras<span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="estoque.html">Estoque</a>
+							<a class="nav-link" href="estoque.html">Produtos</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="fornecedores.html">Fornecedores</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="compras.html">Compras<span class="sr-only">(current)</span></a>
+						</li>
 					</ul>
 				</div>
 			</nav>
+		</div>
+		<div id="painelDelete">
+			<div class="form-group">
+				<label>DELETAR COMPRA</label>
+				<td><input type="text" id="deleteCompra" value="" placeholder="Informe o código da compra" class="form-control"/></td>
+				</br>
+				<button id="deleteComp" class="btn btn-primary">Deletar</button>
+			</div>
+		</div>
+		<div id="painelBuscaTodas">
+			<div class="form-group">
+				<label>LISTAR TODAS AS COMPRAS</label>
+				</br>
+				<button id="buscaTodas" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
 		<div id="painelBusca">
 			<div class="form-group">

@@ -45,6 +45,7 @@ public class MainServer {
 		controller.buscarFornecedorNome();
 		controller.addCompra();
 		controller.delCompra();
+		controller.buscarCompraTodas();
 		controller.buscarCompra();
 		controller.addUsuario();
 		controller.delUsuario();

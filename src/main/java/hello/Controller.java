@@ -183,6 +183,14 @@ public class Controller {
 			return "Compra " + req.params(":codigocompra") + " deletada com sucesso!";
 		});
 	}
+	public void buscarCompraTodas()
+	{
+		get("/estoqueCompBuscarTodas/", (req, res) ->
+		{
+			List<Compra> todasCompras = sistema.getCompras();
+			return new Gson().toJson(todasCompras);
+		});
+	}
 	public void buscarCompra()
 	{
 		get("/estoqueCompBuscar/:codigocompra", (req, res) ->
