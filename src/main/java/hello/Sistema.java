@@ -24,18 +24,13 @@ public class Sistema {
 	private List<Usuario> usuarios = new LinkedList<Usuario>();
 
 	/*---------Produtos----------*/
-	public boolean addProduto(Produto prod) {
+	public void addProduto(Produto prod) {
 		if (isProuctAvailable(prod.getCodigoproduto())) {
 
 			products.store(prod);
 			products.commit();
-
-			return true;
 			
 		}
-		
-		return false;
-		
 	}
 
 	public void delProduto(int codigoproduto) {
@@ -89,19 +84,14 @@ public class Sistema {
 	}
 
 	/*---------Fornecedores----------*/
-	public boolean addFornecedor(Fornecedor fornecedor) {
+	public void addFornecedor(Fornecedor fornecedor) {
 		
 		if (isProviderAvailable(fornecedor.getCnpj())) {
 
 			providers.store(fornecedor);
 			providers.commit();
-
-			return true;
 			
 		}
-		
-		return false;
-		
 	}
 
 	public void delFornecedor(int cnpj) {
@@ -115,7 +105,7 @@ public class Sistema {
 				
 				providers.delete(fornecedor);
 				providers.commit();
-				
+
 			}
 		}
 	}
@@ -194,19 +184,14 @@ public class Sistema {
 	}
 
 	/*---------Compras----------*/
-	public boolean addCompra(Compra compra) {
+	public void addCompra(Compra compra) {
 
 		if (isPurchaseAvailable(compra.getCodigocompra())) {
 
 			purchases.store(compra);
 			purchases.commit();
-
-			return true;
 			
 		}
-		
-		return false;
-		
 	}
 
 	public void delCompra(int codigocompra) {
@@ -220,7 +205,7 @@ public class Sistema {
 				
 				purchases.delete(compra);
 				purchases.commit();
-				
+
 			}
 		}
 	}
@@ -377,7 +362,11 @@ public class Sistema {
 	}
 
 	public List<Usuario> getUsuarios() {
-		return usuarios;
+		Query query = users.query();
+		query.constrain(Usuario.class);
+		List<Usuario> todosUsuarios = query.execute();
+		
+		return todosUsuarios;
 	}
 
 	public void setUsuarios(List<Usuario> usuarios) {

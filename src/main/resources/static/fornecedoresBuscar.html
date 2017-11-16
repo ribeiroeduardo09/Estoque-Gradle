@@ -11,13 +11,6 @@
 
 		<script>
 			$(document).ready(function(){
-				$("#deleteForn").click(function() {
-					var cnpj = $( "#deleteFornecedor" ).val();
-					var url = "/estoqueFornDel/" + cnpj;					
-					$.getJSON(url);
-					alert("Fornecedor " + cnpj + " deletado com sucesso!");
-				});
-				
 				$("#buscaTodos").click(function() {
 					$("#dadosFornecedor").empty();
 					var url = "/estoqueFornBuscarTodos/";					
@@ -42,7 +35,7 @@
 				});
 			
 				$("#buscaForn").click(function() {
-					var cnpj = $( "#cnpj" ).val();
+					var cnpj = $( "#informacao" ).val();
 					$("#dadosFornecedor").empty();
 					var url = "/estoqueFornBuscar/" + cnpj;					
 					$.getJSON(url, function(data) {			
@@ -64,7 +57,7 @@
 				});
 				
 				$("#buscaFornNome").click(function() {
-					var nomeFornecedor = $( "#nomeFornecedor" ).val();
+					var nomeFornecedor = $( "#informacao" ).val();
 					$("#dadosFornecedor").empty();
 					var url = "/estoqueFornBuscarN/" + nomeFornecedor;					
 					$.getJSON(url, function(data) {			
@@ -88,7 +81,7 @@
 				});
 				
 				$("#buscaFornProduto").click(function() {
-					var produtoFornecedor = $( "#produtoFornecedor" ).val();
+					var produtoFornecedor = $( "#informacao" ).val();
 					$("#dadosFornecedor").empty();
 					var url = "/estoqueFornBuscarP/" + produtoFornecedor;					
 					$.getJSON(url, function(data) {			
@@ -126,7 +119,7 @@
 							<a class="nav-link" href="estoque.html">Produtos</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="fornecedores.html">Fornecedores<span class="sr-only">(current)</span></a>
+							<a class="nav-link active" href="#">Fornecedores<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="compras.html">Compras</a>
@@ -137,57 +130,38 @@
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Principal</a>
+				<a class="nav-link" href="fornecedoresPrincipal.html">Principal</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Buscar</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Inútil</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled" href="#">Inútil</a>
+				<a class="nav-link active" href="#">Buscar</a>
 			</li>
 		</ul>
-		<div id="painelDelete">
-			<div class="form-group">
-				<label>DELETAR FORNECEDOR</label>
-				<td><input type="text" id="deleteFornecedor" value="" placeholder="Informe o CNPJ" class="form-control"/></td>
-				</br>
-				<button id="deleteForn" class="btn btn-primary">Deletar</button>
-			</div>
-		</div>
 		<div id="painelBuscaTodos">
 			<div class="form-group">
 				<label>LISTAR TODOS OS FORNECEDORES</label>
-				</br>
-				<button id="buscaTodos" class="btn btn-primary">Buscar</button>
+				<br>
+				<button id="buscaTodos" class="btn btn-primary">LISTAR TODOS</button>
 			</div>
 		</div>
+		<br>
+		<td><input type="text" id="informacao" value="" placeholder="Entre com a informação" class="form-control"/></td>
+		<label>BUSCAR POR:</label>
   		<div id="painelBusca">
 			<div class="form-group">
-				<label>ENCONTRAR FORNECEDOR PELO CNPJ</label>
-				<td><input type="text" id="cnpj" value="" placeholder="Informe o CNPJ" class="form-control"/></td>
-				</br>
-				<button id="buscaForn" class="btn btn-primary">Buscar</button>
+				<button id="buscaForn" class="btn btn-primary">CNPJ</button>
 			</div>
 		</div>
 		<div id="painelBuscaNome">
 			<div class="form-group">
-				<label>ENCONTRAR FORNECEDOR PELO NOME</label>
-				<td><input type="text" id="nomeFornecedor" value="" placeholder="Informe o nome" class="form-control"/></td>
-				</br>
-				<button id="buscaFornNome" class="btn btn-primary">Buscar</button>
+				<button id="buscaFornNome" class="btn btn-primary">NOME</button>
 			</div>
 		</div>
 		<div id="painelBuscaProduto">
 			<div class="form-group">
-				<label>ENCONTRAR FORNECEDOR POR PRODUTO</label>
-				<td><input type="text" id="produtoFornecedor" value="" placeholder="Informe o código do produto" class="form-control"/></td>
-				</br>
-				<button id="buscaFornProduto" class="btn btn-primary">Buscar</button>
+				<button id="buscaFornProduto" class="btn btn-primary">CÓDIGO DE UM PRODUTO</button>
 			</div>
 		</div>
+		<br>
 		<caption>FORNECEDORES ENCONTRADOS</caption>
 		<table class="table table-bordered"> 
 			<thead>

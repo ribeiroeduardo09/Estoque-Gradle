@@ -27,7 +27,7 @@ public class Controller {
 	    	LocalDate data = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
 			Produto prod = new Produto(req.params(":nome"), Float.parseFloat(req.params(":valorcompra")), Integer.parseInt(req.params(":codigoproduto")), req.params(":descricao"), Integer.parseInt(req.params(":quantidade")), data);
 			sistema.addProduto(prod);
-			return "Produto " + req.params(":codigoproduto") + " adicionado com sucesso!";
+			return "";
 		});
 	}
 	public void delProduto()
@@ -35,7 +35,7 @@ public class Controller {
 		get("/estoqueProdDel/:codigoproduto", (req, res) ->
 		{
 			sistema.delProduto(Integer.parseInt(req.params(":codigoproduto")));
-			return "Produto " + req.params(":codigoproduto") + " deletado com sucesso!";
+			return "";
 		});
 	}
 	public void buscarProdutoTodos()
@@ -83,14 +83,8 @@ public class Controller {
 	    				req.params(":email"), req.params(":telefone"), req.params(":endereco"), data, produtos);
 	    		
 	    		sistema.addFornecedor(forn);
-	    		
-	    		return "Fornecedor " + req.params(":CNPJ") + " adicionado com sucesso!";
-	    		
-	    	} else {
-	    		
-	    		return "Fornecedor deve ter ao menos um produto para ser cadastrado.";
-	    		
 	    	}
+	    	return "";
 		});
 	}
 	
@@ -172,7 +166,7 @@ public class Controller {
 	    		Compra comp = new Compra(Float.parseFloat(req.params(":valortotal")), data, produtos, fornecedores, Integer.parseInt(req.params(":codigocompra")));
 	    		sistema.addCompra(comp);
 	    	}			
-			return "Compra " + req.params(":codigocompra") + " adicionada com sucesso!";
+			return "";
 		});
 	}
 	public void delCompra()
@@ -180,7 +174,7 @@ public class Controller {
 		get("/estoqueCompDel/:codigocompra", (req, res) ->
 		{
 			sistema.delCompra(Integer.parseInt(req.params(":codigocompra")));
-			return "Compra " + req.params(":codigocompra") + " deletada com sucesso!";
+			return "";
 		});
 	}
 	public void buscarCompraTodas()
@@ -210,7 +204,7 @@ public class Controller {
 	    	LocalDate data = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
 	    	Usuario usua = new Usuario(req.params(":nomeusuario"), req.params(":login"), req.params(":senha"), Integer.parseInt(req.params(":matricula")), req.params(":cargo"), data);
 			sistema.addUsuario(usua);
-			return "Usuário " + req.params(":login") + " adicionado com sucesso!";
+			return "";
 		});
 	}
 	public void delUsuario()
@@ -218,7 +212,7 @@ public class Controller {
 		get("/estoqueUsuaDel/:login", (req, res) ->
 		{
 			sistema.delUsuario(req.params(":login"));
-			return "Usuário " + req.params(":login") + " deletado com sucesso!";
+			return "";
 		});
 	}
 	public void buscarUsuario()
