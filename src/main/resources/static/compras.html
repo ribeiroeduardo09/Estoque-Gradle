@@ -14,10 +14,29 @@
 				$("#buscaComp").click(function() {
 					var codCompra = $( "#codigocompra" ).val();
 					$("#dadosCompra").empty();
-					var url = "/estoqueCompBuscar/"+codCompra;
+					var url = "/estoqueCompBuscar/" + codCompra;
 					$.getJSON(url, function(data) {			
 						var itens = [];
-						itens.push("<tr> <td>" + data.codigocompra + "</td><td>" + data.valortotal + "</td><td>" + data.datacompra.day + "/" + data.datacompra.month + "/" + data.datacompra.year + "</td><td>" + data.produtos + "</td><td>" + data.fornecedores + "</td></tr>");
+						var qtdProd;
+						var qtdForn;
+						var prod;
+						var forn;
+						this.prod = "";
+						this.forn = "";
+						this.qtdProd = data.produtos.length;
+						this.qtdForn = data.fornecedores.length;
+						
+						for(i = 0; i < this.qtdProd; i++){
+							this.prod += data.produtos[i].codigoproduto + " - ";
+							this.prod += data.produtos[i].nome + "<br>";
+						}
+						for(i = 0; i < this.qtdForn; i++){
+							this.forn += data.fornecedores[i].cnpj + " - ";
+							this.forn += data.fornecedores[i].nomeFornecedor + "<br>";
+						}
+						
+						itens.push("<tr> <td>" + data.codigocompra + "</td><td>" + data.valortotal + "</td><td>" + data.datacompra.day + "/" + data.datacompra.month + "/" + data.datacompra.year + "</td><td>" + this.prod + "</td><td>" + this.forn + "</td></tr>");
+						
 						$("#dadosCompra").append(itens);
 					});	
 				});

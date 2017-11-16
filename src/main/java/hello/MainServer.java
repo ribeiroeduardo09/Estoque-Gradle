@@ -38,6 +38,7 @@ public class MainServer {
 		controller.buscarProduto();
 		controller.addFornecedor();
 		controller.delFornecedor();
+		controller.buscarFornecedorTodos();
 		controller.buscarFornecedor();
 		controller.buscarFornecedorProduto();
 		controller.buscarFornecedorNome();

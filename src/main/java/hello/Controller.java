@@ -92,11 +92,19 @@ public class Controller {
 		get("/estoqueFornDel/:cnpj", (req, res) ->
 		{
 			sistema.delFornecedor(Integer.parseInt(req.params(":cnpj")));
-			return "Fornecedor " + req.params(":cnpj") + " deletado com sucesso!";
+			return "";
 		});
 	}
 	
 	//Search
+	public void buscarFornecedorTodos()
+	{
+		get("/estoqueFornBuscarTodos/", (req, res) ->
+		{
+			List<Fornecedor> todosFornecedores = sistema.getFornecedores();
+			return new Gson().toJson(todosFornecedores);
+		});
+	}
 	public void buscarFornecedor()
 	{
 		get("/estoqueFornBuscar/:cnpj", (req, res) ->
@@ -107,18 +115,18 @@ public class Controller {
 	}
 	public void buscarFornecedorProduto()
 	{
-		get("/estoqueFornBuscarP/:cnpj", (req, res) ->
+		get("/estoqueFornBuscarP/:codigoproduto", (req, res) ->
 		{	
-			LinkedList<Produto> lProd = sistema.searchFornecedorListP(Integer.parseInt(req.params(":cnpj")));
-			return new Gson().toJson(lProd);
+			List<Fornecedor> fornecedoresEncontrados = sistema.searchFornecedorListP(Integer.parseInt(req.params(":codigoproduto")));
+			return new Gson().toJson(fornecedoresEncontrados);
 		});
 	}
 	public void buscarFornecedorNome()
 	{
 		get("/estoqueFornBuscarN/:nomeForn", (req, res) ->
 		{
-			List<Fornecedor> fornecedorEncontrado = sistema.searchFornecedorNome(req.params(":nomeForn"));
-			return new Gson().toJson(fornecedorEncontrado);
+			List<Fornecedor> fornecedorEncontrados = sistema.searchFornecedorNome(req.params(":nomeForn"));
+			return new Gson().toJson(fornecedorEncontrados);
 		});
 	}
 	

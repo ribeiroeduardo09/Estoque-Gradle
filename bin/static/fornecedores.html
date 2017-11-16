@@ -11,6 +11,36 @@
 
 		<script>
 			$(document).ready(function(){
+				$("#deleteForn").click(function() {
+					var cnpj = $( "#deleteFornecedor" ).val();
+					var url = "/estoqueFornDel/" + cnpj;					
+					$.getJSON(url);
+					alert("Fornecedor " + cnpj + " deletado com sucesso!");
+				});
+				
+				$("#buscaTodos").click(function() {
+					$("#dadosFornecedor").empty();
+					var url = "/estoqueFornBuscarTodos/";					
+					$.getJSON(url, function(data) {			
+						var itens = [];
+						var qtd;
+						var prod;
+						$.each(data, function(i){
+							this.prod = "";
+							this.qtd = this.produtos.length;
+							
+							for(i = 0; i < this.qtd; i++){
+								this.prod += this.produtos[i].codigoproduto + " - ";
+								this.prod += this.produtos[i].nome + "<br>";
+							}
+							
+							itens.push("<tr> <td>" + this.cnpj + "</td><td>" + this.nomeFornecedor + "</td><td>" + this.email + "</td><td>" + this.telefone + "</td><td>" + this.endereco + "</td><td>" + this.datacadastroforn.day + "/" + this.datacadastroforn.month + "/" + this.datacadastroforn.year + "</td><td>" + this.prod + "</td></tr>");
+						});
+							
+						$("#dadosFornecedor").append(itens);
+					});
+				});
+			
 				$("#buscaForn").click(function() {
 					var cnpj = $( "#cnpj" ).val();
 					$("#dadosFornecedor").empty();
@@ -21,14 +51,64 @@
 						var prod;
 						this.prod = "";
 						this.qtd = data.produtos.length;
+						
 						for(i = 0; i < this.qtd; i++){
 							this.prod += data.produtos[i].codigoproduto + " - ";
 							this.prod += data.produtos[i].nome + "<br>";
 						}
+						
 						itens.push("<tr> <td>" + data.cnpj + "</td><td>" + data.nomeFornecedor + "</td><td>" + data.email + "</td><td>" + data.telefone + "</td><td>" + data.endereco + "</td><td>" + data.datacadastroforn.day + "/" + data.datacadastroforn.month + "/" + data.datacadastroforn.year + "</td><td>" + this.prod + "</td></tr>");
 																								
 						$("#dadosFornecedor").append(itens);
 					});	
+				});
+				
+				$("#buscaFornNome").click(function() {
+					var nomeFornecedor = $( "#nomeFornecedor" ).val();
+					$("#dadosFornecedor").empty();
+					var url = "/estoqueFornBuscarN/" + nomeFornecedor;					
+					$.getJSON(url, function(data) {			
+						var itens = [];
+						var qtd;
+						var prod;
+						$.each(data, function(i){
+							this.prod = "";
+							this.qtd = this.produtos.length;
+							
+							for(i = 0; i < this.qtd; i++){
+								this.prod += this.produtos[i].codigoproduto + " - ";
+								this.prod += this.produtos[i].nome + "<br>";
+							}
+							
+							itens.push("<tr> <td>" + this.cnpj + "</td><td>" + this.nomeFornecedor + "</td><td>" + this.email + "</td><td>" + this.telefone + "</td><td>" + this.endereco + "</td><td>" + this.datacadastroforn.day + "/" + this.datacadastroforn.month + "/" + this.datacadastroforn.year + "</td><td>" + this.prod + "</td></tr>");
+						});
+							
+						$("#dadosFornecedor").append(itens);
+					});
+				});
+				
+				$("#buscaFornProduto").click(function() {
+					var produtoFornecedor = $( "#produtoFornecedor" ).val();
+					$("#dadosFornecedor").empty();
+					var url = "/estoqueFornBuscarP/" + produtoFornecedor;					
+					$.getJSON(url, function(data) {			
+						var itens = [];
+						var qtd;
+						var prod;
+						$.each(data, function(i){
+							this.prod = "";
+							this.qtd = this.produtos.length;
+							
+							for(i = 0; i < this.qtd; i++){
+								this.prod += this.produtos[i].codigoproduto + " - ";
+								this.prod += this.produtos[i].nome + "<br>";
+							}
+							
+							itens.push("<tr> <td>" + this.cnpj + "</td><td>" + this.nomeFornecedor + "</td><td>" + this.email + "</td><td>" + this.telefone + "</td><td>" + this.endereco + "</td><td>" + this.datacadastroforn.day + "/" + this.datacadastroforn.month + "/" + this.datacadastroforn.year + "</td><td>" + this.prod + "</td></tr>");
+						});
+							
+						$("#dadosFornecedor").append(itens);
+					});
 				});
 			});
 		</script>
@@ -60,24 +140,55 @@
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Active</a>
+				<a class="nav-link active" href="#">Principal</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link</a>
+				<a class="nav-link" href="#">Buscar</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link</a>
+				<a class="nav-link" href="#">Inútil</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link disabled" href="#">Disabled</a>
+				<a class="nav-link disabled" href="#">Inútil</a>
 			</li>
 		</ul>
+		<div id="painelDelete">
+			<div class="form-group">
+				<label>DELETAR FORNECEDOR</label>
+				<td><input type="text" id="deleteFornecedor" value="" placeholder="Informe o CNPJ" class="form-control"/></td>
+				</br>
+				<button id="deleteForn" class="btn btn-primary">Deletar</button>
+			</div>
+		</div>
+		<div id="painelBuscaTodos">
+			<div class="form-group">
+				<label>LISTAR TODOS OS FORNECEDORES</label>
+				</br>
+				<button id="buscaTodos" class="btn btn-primary">Buscar</button>
+			</div>
+		</div>
   		<div id="painelBusca">
 			<div class="form-group">
 				<label>ENCONTRAR FORNECEDOR PELO CNPJ</label>
 				<td><input type="text" id="cnpj" value="" placeholder="Informe o CNPJ" class="form-control"/></td>
 				</br>
 				<button id="buscaForn" class="btn btn-primary">Buscar</button>
+			</div>
+		</div>
+		<div id="painelBuscaNome">
+			<div class="form-group">
+				<label>ENCONTRAR FORNECEDOR PELO NOME</label>
+				<td><input type="text" id="nomeFornecedor" value="" placeholder="Informe o nome" class="form-control"/></td>
+				</br>
+				<button id="buscaFornNome" class="btn btn-primary">Buscar</button>
+			</div>
+		</div>
+		<div id="painelBuscaProduto">
+			<div class="form-group">
+				<label>ENCONTRAR FORNECEDOR POR PRODUTO</label>
+				<td><input type="text" id="produtoFornecedor" value="" placeholder="Informe o código do produto" class="form-control"/></td>
+				</br>
+				<button id="buscaFornProduto" class="btn btn-primary">Buscar</button>
 			</div>
 		</div>
 		<caption>FORNECEDORES ENCONTRADOS</caption>
