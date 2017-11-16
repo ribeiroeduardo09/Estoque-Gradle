@@ -35,6 +35,7 @@ public class MainServer {
 		
 		controller.addProduto();
 		controller.delProduto();
+		controller.buscarProdutoTodos();
 		controller.buscarProduto();
 		controller.addFornecedor();
 		controller.delFornecedor();
@@ -52,15 +53,7 @@ public class MainServer {
     }
     
     public static void inicializarProdutos() {};
-    public static void inicializarFornecedores(){
-    	LinkedList<Produto> lista = new LinkedList<Produto>();
-    	lista.add(sistema.searchProduto(01));
-    	lista.add(sistema.searchProduto(02));
-    	lista.add(sistema.searchProduto(03));
-    	lista.add(sistema.searchProduto(04));
-    	lista.add(sistema.searchProduto(05));
-    	sistema.addFornecedor(new Fornecedor("Apple", 4444, "a@gmail.com", "1111-1111", "Rua Alta", LocalDate.of(2017, Month.AUGUST, 18), lista));
-    }
+    public static void inicializarFornecedores() {};
     public static void inicializarCompras() {};
     public static void inicializarUsuarios() {};
     

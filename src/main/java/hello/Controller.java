@@ -38,6 +38,14 @@ public class Controller {
 			return "Produto " + req.params(":codigoproduto") + " deletado com sucesso!";
 		});
 	}
+	public void buscarProdutoTodos()
+	{
+		get("/estoqueProdBuscarTodos/", (req, res) ->
+		{
+			List<Produto> todosProdutos = sistema.getProdutos();
+			return new Gson().toJson(todosProdutos);
+		});
+	}
 	public void buscarProduto()
 	{
 		get("/estoqueProdBuscar/:codigoproduto", (req, res) ->

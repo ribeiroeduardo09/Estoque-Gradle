@@ -11,10 +11,30 @@
 
 		<script>
 			$(document).ready(function(){
-				$("#buscaProd").click(function() {
-					var codProduto = $( "#codigoproduto" ).val();
+				$("#deleteProd").click(function() {
+					var codigoproduto = $( "#codigoprodutoDel" ).val();
+					var url = "/estoqueProdDel/" + codigoproduto;					
+					$.getJSON(url);
+					alert("Produto " + codigoproduto + " deletado com sucesso!");
+				});
+				
+				$("#buscaTodos").click(function() {
 					$("#dadosProduto").empty();
-					var url = "/estoqueProdBuscar/"+codProduto;
+					var url = "/estoqueProdBuscarTodos/";					
+					$.getJSON(url, function(data) {			
+						var itens = [];
+						$.each(data, function(i){
+							itens.push("<tr> <td>" + this.codigoproduto + "</td><td>" + this.nome + "</td><td>" + this.valorcompra + "</td><td>" + this.descricao + "</td><td>" + this.quantidade + "</td><td>" + this.datacad.day + "/" + this.datacad.month + "/" + this.datacad.year + "</td></tr>");
+						});
+							
+						$("#dadosProduto").append(itens);
+					});
+				});
+				
+				$("#buscaProd").click(function() {
+					var codigoproduto = $( "#codigoproduto" ).val();
+					$("#dadosProduto").empty();
+					var url = "/estoqueProdBuscar/" + codigoproduto;
 					$.getJSON(url, function(data) {
 						var itens = [];
 							itens.push("<tr> <td>"+ data.codigoproduto + "</td><td>"+ data.nome +"</td><td>"+ data.valorcompra + "</td><td>"+ data.descricao + "</td><td>"+ data.quantidade + "</td><td>"+ data.datacad.day + "/" + data.datacad.month + "/" + data.datacad.year + "</td></tr>");
@@ -48,6 +68,21 @@
 					</ul>
 			  </div>
 			</nav>
+		</div>
+		<div id="painelDelete">
+			<div class="form-group">
+				<label>DELETAR PRODUTO</label>
+				<td><input type="text" id="codigoprodutoDel" value="" placeholder="Informe o código do produto" class="form-control"/></td>
+				</br>
+				<button id="deleteProd" class="btn btn-primary">Deletar</button>
+			</div>
+		</div>
+		<div id="painelBuscaTodos">
+			<div class="form-group">
+				<label>LISTAR TODOS OS PRODUTOS</label>
+				</br>
+				<button id="buscaTodos" class="btn btn-primary">Buscar</button>
+			</div>
 		</div>
   		<div id="painelBusca">
 			<div class="form-group">
