@@ -50,6 +50,7 @@ public class MainServer {
 		controller.addUsuario();
 		controller.delUsuario();
 		controller.buscarUsuario();
+		controller.buscarUsuarioTodos();
 		controller.logarUsuario();
     }
     

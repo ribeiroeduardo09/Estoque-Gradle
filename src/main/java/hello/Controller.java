@@ -223,15 +223,23 @@ public class Controller {
 			return new Gson().toJson(usuarioEncontrado);
 		});
 	}
+	public void buscarUsuarioTodos()
+	{
+		get("/estoqueUsuaBuscarTodos/", (req, res) ->
+		{
+			List<Usuario> todosUsuarios = sistema.getUsuarios();
+			return new Gson().toJson(todosUsuarios);
+		});
+	}
 	public void logarUsuario()
 	{
 		get("/estoqueUsuaLogar/:login/:senha", (req, res) ->
 		{
 			boolean verificacao = sistema.logarUsuario(req.params(":login"), req.params(":senha"));
 			if(verificacao == true)
-				return "Logado com sucesso! A verificação resultou " + verificacao;
+				return true;
 			else
-				return "Nome de usuário ou senha incorreto(s). A verificação resultou " + verificacao;
+				return false;
 		});
 	}
 }
