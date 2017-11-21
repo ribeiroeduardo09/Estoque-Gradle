@@ -8,6 +8,18 @@
 		
 		<script src="js/jquery.js"></script>
 		<link href="css/bootstrap.min.css" rel=stylesheet>
+		
+		<script>
+			$(document).ready(function(){
+					$("#deleteUsua").click(function() {
+						var login = $( "#loginDel" ).val();
+						var url = "/estoqueUsuaDel/" + login;
+						$.getJSON(url);
+						alert("Usuário " + login + " deletado com sucesso!");
+					});
+			});
+		</script>
+		
 	</head>
 	<body>
 		<div> <!-- Barra de navegação -->
@@ -33,20 +45,22 @@
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Principal</a>
+				<a class="nav-link" href="index.html">Principal</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="indexGerenciar.html">Gerenciar usuários</a>
+				<a class="nav-link active" href="#">Gerenciar usuários</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="indexBuscar.html">Buscar usuários</a>
 			</li>
 		</ul>
-		<br>
-		<h1>ESTOQUE</h1><br>
-		<br>
-		<h2>BEM-VINDO AO SISTEMA DE GERENCIAMENTO DE ESTOQUE</h2>
-		<br>
-		Para utilizar o sistema acesse o menu superior
+		<div id="painelDelete">
+			<div class="form-group">
+				<label>DELETAR USUÁRIO</label>
+				<td><input type="text" id="loginDel" value="" placeholder="Informe o login" class="form-control"/></td>
+				</br>
+				<button id="deleteUsua" class="btn btn-primary">Deletar</button>
+			</div>
+		</div>
 	</body>
 </html>

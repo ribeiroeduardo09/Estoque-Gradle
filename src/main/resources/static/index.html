@@ -8,24 +8,6 @@
 		
 		<script src="js/jquery.js"></script>
 		<link href="css/bootstrap.min.css" rel=stylesheet>
-		
-		<script>
-			$(document).ready(function(){
-					$("#login").click(function() {
-						var usuario = $( "#usuario" ).val();
-						var senha = $( "#senha" ).val();
-						var url = "/estoqueUsuaLogar/" + usuario + senha;					
-						$.getJSON(url, function(data) {			
-							var verifica = data;
-							if (data == true)
-								alert("Usuário " + usuario + " logado com sucesso!");
-							else 
-								alert("Falha no login");
-						});
-					});
-			});
-		</script>
-		
 	</head>
 	<body>
 		<div> <!-- Barra de navegação -->
@@ -37,13 +19,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="produtosPrincipal.html">Produtos</a>
+							<a class="nav-link" href="produtosBuscar.html">Produtos</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="fornecedoresPrincipal.html">Fornecedores</a>
+							<a class="nav-link" href="fornecedoresBuscar.html">Fornecedores</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="comprasPrincipal.html">Compras</a>
+							<a class="nav-link" href="comprasBuscar.html">Compras</a>
 						</li>
 					</ul>
 				</div>
@@ -51,27 +33,20 @@
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="indexPrincipal.html">Principal</a>
+				<a class="nav-link active" href="#">Principal</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="indexGerenciar.html">Gerenciar usuários</a>
+				<a class="nav-link" href="indexGerenciar.html">Gerenciar usuários</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="indexBuscar.html">Buscar usuários</a>
+				<a class="nav-link" href="indexBuscar.html">Buscar usuários</a>
 			</li>
 		</ul>
 		<br>
 		<h1>ESTOQUE</h1><br>
-		<h2>Para acessar o sistema, utilize o menu superior</h2>
-		
-		<div id="painelBusca">
-			<div class="form-group">
-				<label>FAZER LOGIN</label>
-				<td><input type="text" id="usuario" value="" placeholder="Usuário" class="form-control"/></td>
-				<td><input type="text" id="senha" value="" placeholder="Senha" class="form-control"/></td>
-				</br>
-				<button id="login" class="btn btn-primary">Logar</button>
-			</div>
-		</div>
+		<br>
+		<h2>BEM-VINDO AO SISTEMA DE GERENCIAMENTO DE ESTOQUE</h2>
+		<br>
+		Para utilizar o sistema acesse o menu superior
 	</body>
 </html>

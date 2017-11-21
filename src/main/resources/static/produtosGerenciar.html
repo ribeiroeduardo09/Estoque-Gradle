@@ -17,30 +17,6 @@
 					$.getJSON(url);
 					alert("Produto " + codigoproduto + " deletado com sucesso!");
 				});
-				
-				$("#buscaTodos").click(function() {
-					$("#dadosProduto").empty();
-					var url = "/estoqueProdBuscarTodos/";					
-					$.getJSON(url, function(data) {			
-						var itens = [];
-						$.each(data, function(i){
-							itens.push("<tr> <td>" + this.codigoproduto + "</td><td>" + this.nome + "</td><td>" + this.valorcompra + "</td><td>" + this.descricao + "</td><td>" + this.quantidade + "</td><td>" + this.datacad.day + "/" + this.datacad.month + "/" + this.datacad.year + "</td></tr>");
-						});
-							
-						$("#dadosProduto").append(itens);
-					});
-				});
-				
-				$("#buscaProd").click(function() {
-					var codigoproduto = $( "#codigoproduto" ).val();
-					$("#dadosProduto").empty();
-					var url = "/estoqueProdBuscar/" + codigoproduto;
-					$.getJSON(url, function(data) {
-						var itens = [];
-							itens.push("<tr> <td>"+ data.codigoproduto + "</td><td>"+ data.nome +"</td><td>"+ data.valorcompra + "</td><td>"+ data.descricao + "</td><td>"+ data.quantidade + "</td><td>"+ data.datacad.day + "/" + data.datacad.month + "/" + data.datacad.year + "</td></tr>");
-							$("#dadosProduto").append(itens);
-					});
-				});
 			});
 		</script>
 	</head>
@@ -57,10 +33,10 @@
 							<a class="nav-link active" href="#">Produtos<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="fornecedoresPrincipal.html">Fornecedores</a>
+							<a class="nav-link" href="fornecedoresBuscar.html">Fornecedores</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="comprasPrincipal.html">Compras</a>
+							<a class="nav-link" href="comprasBuscar.html">Compras</a>
 						</li>
 					</ul>
 			  </div>
@@ -68,10 +44,10 @@
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Principal</a>
+				<a class="nav-link" href="produtosBuscar.html">Buscar</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="produtosBuscar.html">Buscar</a>
+				<a class="nav-link active" href="#">Gerenciar produtos</a>
 			</li>
 		</ul>
 		<div id="painelDelete">
