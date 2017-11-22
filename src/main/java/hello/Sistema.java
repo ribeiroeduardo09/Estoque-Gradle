@@ -89,6 +89,7 @@ public class Sistema {
 		if (isProviderAvailable(fornecedor.getCnpj())) {
 
 			providers.store(fornecedor);
+			providers.store(fornecedor.getProdutos());
 			providers.commit();
 			
 		}
@@ -128,22 +129,49 @@ public class Sistema {
 		
 	}
 
-	public List<Fornecedor> searchFornecedorListP(int codigoproduto) {
-		List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
+	public LinkedList<Produto> searchFornecedorListP(int cnpj) {
+//		List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
+//		
+//		Query query = providers.query();
+//		query.constrain(Fornecedor.class);
+//		ObjectSet<Fornecedor> allProviders = query.execute();
+//		
+//		for (Fornecedor tempForn:allProviders) {
+//			for(Produto tempProd:tempForn.getProdutos()) {
+//				if (tempProd.getCodigoproduto() == codigoproduto)
+//					fornecedores.add(tempForn);
+//			}
+//			System.out.println(fornecedores.size());
+//		}
+//		
+//		return fornecedores;
+		
+		LinkedList<Produto> lTemp = new LinkedList<Produto>();
+		Fornecedor forn = null;
 		
 		Query query = providers.query();
 		query.constrain(Fornecedor.class);
 		ObjectSet<Fornecedor> allProviders = query.execute();
 		
-		for (Fornecedor tempForn:allProviders) {
-			for(Produto tempProd:tempForn.getProdutos()) {
-				if (tempProd.getCodigoproduto() == codigoproduto)
-					fornecedores.add(tempForn);
+		Query query2 = products.query();
+		query2.constrain(Produto.class);
+		ObjectSet<Produto> allProducts = query2.execute();
+		
+		for (Fornecedor fornecedor : allProviders) {
+			if (fornecedor.getCnpj() == cnpj) {
+				forn = fornecedor;
 			}
-			System.out.println(fornecedores.size());
 		}
 		
-		return fornecedores;
+		for (Produto produto : allProducts) {
+			for (Produto produto2 : forn.getProdutos()) {
+				if (produto.getCodigoproduto() == produto2.getCodigoproduto()) {
+					lTemp.add(produto);
+				}
+			}
+		}
+		
+		return lTemp;
 	}
 
 	public List<Fornecedor> searchFornecedorNome(String nomeFornecedor) {
