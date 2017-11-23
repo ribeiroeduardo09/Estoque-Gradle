@@ -119,7 +119,7 @@ public class Controller {
 	{
 		get("/estoqueFornBuscarP/:codigoproduto", (req, res) ->
 		{	
-			List<Produto> fornecedoresEncontrados = sistema.searchFornecedorListP(Integer.parseInt(req.params(":codigoproduto")));
+			List<Fornecedor> fornecedoresEncontrados = sistema.searchFornecedorListP(Integer.parseInt(req.params(":codigoproduto")));
 			return new Gson().toJson(fornecedoresEncontrados);
 		});
 	}

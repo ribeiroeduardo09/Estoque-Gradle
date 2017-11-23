@@ -129,24 +129,23 @@ public class Sistema {
 		
 	}
 
-	public LinkedList<Produto> searchFornecedorListP(int cnpj) {
-//		List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
-//		
-//		Query query = providers.query();
-//		query.constrain(Fornecedor.class);
-//		ObjectSet<Fornecedor> allProviders = query.execute();
-//		
-//		for (Fornecedor tempForn:allProviders) {
-//			for(Produto tempProd:tempForn.getProdutos()) {
-//				if (tempProd.getCodigoproduto() == codigoproduto)
-//					fornecedores.add(tempForn);
-//			}
-//			System.out.println(fornecedores.size());
-//		}
-//		
-//		return fornecedores;
+	public List<Fornecedor> searchFornecedorListP(int codigoproduto) {
+		List<Fornecedor> fornecedores = new LinkedList<Fornecedor>();
 		
-		LinkedList<Produto> lTemp = new LinkedList<Produto>();
+		Query query = providers.query();
+		query.constrain(Fornecedor.class);
+		ObjectSet<Fornecedor> allProviders = query.execute();
+		
+		for (Fornecedor tempForn:allProviders) {
+			for(Produto tempProd:tempForn.getProdutos()) {
+				if (tempProd.getCodigoproduto() == codigoproduto)
+					fornecedores.add(tempForn);
+			}
+		}
+		
+		return fornecedores;
+		
+		/*LinkedList<Produto> lTemp = new LinkedList<Produto>();
 		Fornecedor forn = null;
 		
 		Query query = providers.query();
@@ -171,7 +170,7 @@ public class Sistema {
 			}
 		}
 		
-		return lTemp;
+		return lTemp;*/
 	}
 
 	public List<Fornecedor> searchFornecedorNome(String nomeFornecedor) {
