@@ -18,6 +18,8 @@
 					var fornecedores = $( "#fornecedores" ).val();
 					var codigocompra = $( "#codigocompra" ).val();
 					var url = "/estoqueCompAdd/" + valortotal + "/" + datacompra + "/" + produtos + "/" + fornecedores + "/" + codigocompra + "";
+					if(produtos == "" || fornecedores == "")
+						alert("Informe o(s) produto(s) e/ou fornecedor(es) desta compra");
 					$.getJSON(url);
 				});
 				

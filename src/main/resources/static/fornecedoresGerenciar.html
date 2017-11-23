@@ -20,6 +20,8 @@
 					var datacadastroforn = $( "#datacadastroforn" ).val();
 					var produtos = $( "#produtos" ).val();
 					var url = "/estoqueFornAdd/" + nomeFornecedor + "/" + cnpj + "/" + email + "/" + telefone + "/" + endereco + "/" + datacadastroforn + "/" + produtos + "";
+					if(produtos == "")
+						alert("Informe o(s) produto(s) deste fornecedor");
 					$.getJSON(url);
 				});
 				
