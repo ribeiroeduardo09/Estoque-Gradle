@@ -1,9 +1,6 @@
-spark-heroku
+Estoque (Com Gradle)
 ============
 
-Spark Heroku skeleton
+Projeto da matéria "Laboratório de Banco de Dados III" cursada no terceiro semestre do curso "Tecnologia em Banco de Dados", da FATEC Prof. Jessen Vidal, São José dos Campos.
 
-To deploy your app
-
-	heroku apps:create [your_app_name]
-	git push heroku master
+Este projeto visa trabalhar com o Banco de Dados Orientado a Objetos DB4O, integrando-o ao projeto "Estoque", feito no semestre passado (segundo semestre).
